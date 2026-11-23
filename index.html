@@ -46,9 +46,11 @@ canvas#cv{display:block;width:100%;height:100%;cursor:crosshair;background:#141a
   font-size:11px;letter-spacing:1px;text-shadow:0 1px 2px #000;color:#fff;font-variant-numeric:tabular-nums}
 #hpFill{background:linear-gradient(180deg,#e8573f,#8f1d12)}
 #mpFill{background:linear-gradient(180deg,#4a9ee8,#14407a)}
-#exFill{background:linear-gradient(180deg,#f0c454,#8a6414);height:11px}
-#exBar{height:11px}
-#exBar .txt{font-size:9px}
+#exFill{background:linear-gradient(180deg,#f0c454,#8a6414);height:12px}
+#exFill.maxed{background:linear-gradient(180deg,#ffe28a,#e0ab35);box-shadow:0 0 8px rgba(240,196,84,.45)}
+#exBar{height:12px}
+#exBar .txt{font-size:10px}
+#exBar.maxed .txt{color:#3d2a06;font-weight:700;text-shadow:0 1px 0 rgba(255,255,255,.45);letter-spacing:.5px}
 
 /* ---------- 日志 ---------- */
 #logbox{position:absolute;left:18px;bottom:96px;width:320px;max-height:150px;
@@ -72,6 +74,35 @@ canvas#cv{display:block;width:100%;height:100%;cursor:crosshair;background:#141a
 .sk.locked{filter:grayscale(1) brightness(.5)}
 .sk.locked .nm{color:#7d7160}
 
+/* ---------- 快捷药水栏 ---------- */
+#quickbar{position:absolute;left:50%;bottom:84px;transform:translateX(-50%);display:flex;gap:8px}
+.qs{position:relative;width:56px;height:52px;border:1px solid #6b532c;border-radius:6px;
+  background:radial-gradient(circle at 50% 30%,#3a2c17,#140f08);
+  display:flex;align-items:center;justify-content:center;font-size:19px;color:#f0d78c;
+  padding-bottom:11px;pointer-events:auto;cursor:pointer;
+  box-shadow:0 3px 12px rgba(0,0,0,.55),inset 0 0 12px rgba(160,120,50,.16)}
+.qs:hover{border-color:#a8843c;color:#ffe9b5}
+.qs:active{transform:translateY(1px)}
+.qs .k{position:absolute;top:-1px;left:3px;font-size:10px;color:#9c855c}
+.qs .c{position:absolute;right:3px;top:0;font-size:10px;color:#f0d78c;text-shadow:0 1px 2px #000;
+  font-variant-numeric:tabular-nums}
+.qs .nm{position:absolute;bottom:0;left:0;right:0;text-align:center;font-size:10px;line-height:11px;
+  color:#cbb489;background:rgba(8,6,4,.75);border-radius:0 0 5px 5px;letter-spacing:0;
+  white-space:nowrap;overflow:hidden}
+.qs.empty{color:#6d5f45;border-style:dashed;background:rgba(20,16,10,.55)}
+.qs.empty .nm{color:#8d7a58}
+.qs.none{opacity:.5;filter:grayscale(.7)}
+.qs.none .c{color:#ff9b7a}
+#qsPanel{position:absolute;left:50%;bottom:146px;transform:translateX(-50%);width:214px;
+  max-height:300px;overflow:auto;background:linear-gradient(180deg,rgba(32,25,15,.99),rgba(14,11,7,.99));
+  border:1px solid #6b532c;border-radius:6px;padding:6px;pointer-events:auto;z-index:6;
+  box-shadow:0 12px 34px rgba(0,0,0,.72),inset 0 0 26px rgba(120,90,40,.08)}
+#qsPanel .qttl{font-size:10px;color:#8d7a58;letter-spacing:1px;padding:3px 8px 4px}
+#qsPanel .qt{display:flex;justify-content:space-between;align-items:center;gap:8px;
+  padding:5px 8px;font-size:12px;color:#ecdcb2;border-radius:4px;cursor:pointer;letter-spacing:0}
+#qsPanel .qt:hover{background:rgba(150,110,45,.2)}
+#qsPanel .qt span:last-child{color:#e8c96a;font-variant-numeric:tabular-nums}
+
 /* ---------- 右下按钮 ---------- */
 #btns{position:absolute;right:16px;bottom:16px;display:flex;gap:8px}
 .btn{pointer-events:auto;cursor:pointer;font-size:12px;letter-spacing:1px;color:#e8d5a4;
@@ -93,6 +124,27 @@ canvas#cv{display:block;width:100%;height:100%;cursor:crosshair;background:#141a
 #autoTag i{width:6px;height:6px;border-radius:50%;background:#6bf08a;box-shadow:0 0 8px #6bf08a;
   animation:apulse 1.4s ease-in-out infinite}
 @keyframes apulse{0%,100%{opacity:1}50%{opacity:.2}}
+
+/* ---------- 宠物 ---------- */
+#petTag{position:absolute;top:78px;left:50%;transform:translateX(-50%);
+  display:flex;align-items:center;gap:6px;font-size:11px;letter-spacing:1.5px;
+  color:#ffe3a8;background:rgba(28,22,12,.78);border:1px solid #6b532c;border-radius:20px;
+  padding:3px 13px;pointer-events:auto;cursor:pointer;box-shadow:0 0 14px rgba(220,180,80,.14)}
+#petTag:hover{border-color:#a8843c;color:#fff0c8}
+#petTag i{width:6px;height:6px;border-radius:50%;background:#ffd166;box-shadow:0 0 8px #ffd166}
+#petTag.off{opacity:.55;filter:grayscale(.45)}
+#petTag.off i{background:#8a7a58;box-shadow:none}
+.sitem .pact{display:flex;gap:5px;margin-left:8px;flex-shrink:0}
+.sitem .pbtn{font-size:10.5px;letter-spacing:0;padding:3px 7px;border-radius:4px;
+  border:1px solid #6b532c;background:rgba(60,46,22,.7);color:#e8d5a4;cursor:pointer;white-space:nowrap}
+.sitem .pbtn:hover{background:rgba(110,84,36,.85);color:#fff0c8}
+.sitem .pbtn.on{color:#c9ffd2;border-color:#4f9e5c;background:rgba(31,74,42,.75)}
+.sitem .pbtn.off{color:#c8b48a}
+.sitem .pbtn.no{opacity:.45;cursor:not-allowed}
+.sitem .pbtn.warn{color:#ffb08a;border-color:#7a3a2a;background:rgba(90,30,20,.6)}
+.sitem .pglyph{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;
+  border-radius:4px;font-size:10px;margin-right:4px;color:#1a140c}
+
 .sitem.boss{background:linear-gradient(90deg,rgba(120,30,20,.32),rgba(60,20,14,.12));border-color:#7a3a2a}
 .sitem.boss:hover{background:linear-gradient(90deg,rgba(165,45,30,.48),rgba(80,26,18,.22))}
 .sitem .bl{color:#ff8a6a;font-size:10px;border:1px solid #7a3a2a;border-radius:3px;padding:0 4px;margin-left:7px;letter-spacing:0}
@@ -168,7 +220,12 @@ canvas#cv{display:block;width:100%;height:100%;cursor:crosshair;background:#141a
   text-shadow:0 0 10px rgba(240,210,140,.35);
   position:relative;cursor:pointer;transition:.12s}
 .cell:hover{border-color:#a8863f;background:rgba(120,90,40,.22)}
-.cell .cnt{position:absolute;right:2px;bottom:0;font-size:10px;color:#fff;text-shadow:0 1px 2px #000}
+.cell .cnt{position:absolute;right:1px;bottom:-2px;font-size:9px;font-weight:700;color:#fff;
+  text-shadow:0 1px 2px #000,0 0 3px #000;letter-spacing:-.5px;pointer-events:none}
+.cell .cmp{position:absolute;top:-2px;right:0;font-size:10px;line-height:12px;font-weight:700;
+  text-shadow:0 1px 2px #000,0 0 4px #000;pointer-events:none}
+.cell .cmp.up{color:#6ee08a}
+.cell .cmp.dn{color:#ff7a5e}
 .cell.q1{border-color:#4a7bd0;box-shadow:inset 0 0 10px rgba(70,120,220,.25)}
 .cell.q2{border-color:#a45ad0;box-shadow:inset 0 0 10px rgba(160,90,210,.28)}
 .cell.q3{border-color:#d9a13c;box-shadow:inset 0 0 12px rgba(220,170,60,.35)}
@@ -176,6 +233,12 @@ canvas#cv{display:block;width:100%;height:100%;cursor:crosshair;background:#141a
 #goldLine span:last-child{color:#7d6c4e;font-size:10px;letter-spacing:0}
 
 #shopPanel{right:16px;top:50%;transform:translateY(-50%);width:368px;max-height:87vh;overflow:auto}
+#shopPanel.wide{width:742px;max-height:92vh}
+#shopList.two{display:grid;grid-template-columns:1fr 1fr;gap:2px 10px}
+#shopList.two .shead{grid-column:1 / -1;padding:6px 2px 2px;font-size:9.5px}
+#shopList.two .sitem{margin-bottom:0;padding:4px 7px}
+#shopList.two .sitem .top{font-size:12px;line-height:15px}
+#shopList.two .sitem .sub{font-size:9.5px;line-height:12px}
 .sitem{display:flex;justify-content:space-between;align-items:center;padding:6px 8px;border-radius:5px;
   border:1px solid transparent;cursor:pointer;font-size:12px;margin-bottom:2px}
 .sitem:hover{background:rgba(150,110,45,.16);border-color:#6b532c}
@@ -186,6 +249,11 @@ canvas#cv{display:block;width:100%;height:100%;cursor:crosshair;background:#141a
 .sitem .sub{font-size:10px;color:#8d7a58;letter-spacing:0}
 .sitem .sub .alive{color:#7fe08a}
 .sitem .sub .dead{color:#8a7250}
+.sitem .sub .lk{color:#ff9b7a}
+.sitem.locked{opacity:.5;filter:grayscale(.5)}
+.sitem.locked .p{color:#8a7250}
+.shead{font-size:10px;color:#8d7a58;letter-spacing:2px;padding:9px 2px 3px;
+  border-bottom:1px dashed #3a3020;margin-bottom:4px}
 
 #charPanel{left:16px;top:50%;transform:translateY(-50%);width:250px}
 .strow{display:flex;justify-content:space-between;font-size:12px;padding:4px 2px;border-bottom:1px dashed #3a2e1b}
@@ -202,7 +270,8 @@ canvas#cv{display:block;width:100%;height:100%;cursor:crosshair;background:#141a
 
 /* ---------- 开始界面 ---------- */
 #start{position:absolute;inset:0;background:radial-gradient(circle at 50% 40%,#1b1509,#07060a 72%);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:auto;z-index:50}
+  overflow-y:auto;overflow-x:hidden;padding:26px 20px 30px;pointer-events:auto;z-index:50}
+#startInner{min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center}
 #start h1{font-size:52px;letter-spacing:16px;color:#f2d68a;
   text-shadow:0 0 30px rgba(240,190,80,.45),0 6px 14px #000;font-weight:700;margin-bottom:6px}
 #start .sub{font-size:12px;letter-spacing:6px;color:#8d7a58;margin-bottom:34px}
@@ -222,7 +291,76 @@ canvas#cv{display:block;width:100%;height:100%;cursor:crosshair;background:#141a
 #startBtn:disabled{opacity:.35;cursor:not-allowed}
 #contBtn{margin-top:12px;font-size:12px;color:#8d7a58;cursor:pointer;text-decoration:underline;letter-spacing:1px}
 #contBtn:hover{color:#f0d78c}
-#hint{position:absolute;bottom:26px;font-size:11px;color:#6b5f4a;letter-spacing:2px;text-align:center;line-height:1.9}
+#hint{position:static;margin-top:24px;font-size:11px;color:#6b5f4a;letter-spacing:2px;text-align:center;line-height:1.9}
+
+/* ---------- 登录 / 注册 ---------- */
+#authBox{width:352px;padding:20px 24px 16px;border:1px solid #5d4a2b;border-radius:10px;
+  background:linear-gradient(180deg,rgba(40,31,18,.96),rgba(14,11,7,.98));
+  box-shadow:0 18px 60px rgba(0,0,0,.7),inset 0 0 40px rgba(160,120,50,.08)}
+.authTabs{display:flex;gap:6px;margin-bottom:14px}
+.atab{flex:1;text-align:center;padding:7px 0;font-size:12.5px;letter-spacing:3px;color:#8d7a58;
+  border:1px solid #4a3b23;border-radius:5px;cursor:pointer;transition:.15s}
+.atab:hover{color:#e0c078}
+.atab.on{color:#1a1208;background:linear-gradient(180deg,#f5d78b,#c39a44);border-color:#e0c078;font-weight:700}
+.fld{display:flex;align-items:center;margin-bottom:9px}
+.fld label{width:44px;flex:none;font-size:12px;color:#a08a60;letter-spacing:2px}
+.fld input{flex:1;min-width:0;background:rgba(0,0,0,.55);border:1px solid #4a3b23;border-radius:5px;
+  color:#f0e2bd;font-size:13px;padding:8px 10px;font-family:inherit;letter-spacing:1px;outline:none}
+.fld input:focus{border-color:#c8a353;box-shadow:0 0 0 2px rgba(200,163,83,.15)}
+.fld input::placeholder{color:#5f533d;letter-spacing:0;font-size:12px}
+.fld input:disabled{opacity:.5}
+.chk{display:flex;align-items:center;gap:6px;font-size:11px;color:#8d7a58;margin:3px 0 13px;cursor:pointer;user-select:none}
+.chk input{accent-color:#c8a353;cursor:pointer}
+#auBtn{width:100%;padding:10px 0;font-size:14px;letter-spacing:6px;color:#1a1208;
+  background:linear-gradient(180deg,#f5d78b,#c39a44);border:none;border-radius:6px;cursor:pointer;font-weight:700;
+  transition:.15s}
+#auBtn:hover{background:linear-gradient(180deg,#ffe9ab,#d8ae55)}
+#auBtn:disabled{opacity:.45;cursor:default}
+#auMsg{min-height:17px;font-size:11.5px;margin-top:8px;text-align:center;letter-spacing:1px;color:#ff9b7a;line-height:1.6}
+#auMsg.ok{color:#8fd08a}
+#accList{margin-top:10px;padding-top:9px;border-top:1px dashed #3a2e1b;font-size:10.5px;color:#7d6c4e;
+  line-height:2;text-align:center;letter-spacing:.5px}
+#accList b{color:#a08a60;cursor:pointer;font-weight:400;margin:0 5px;text-decoration:underline;letter-spacing:0}
+#accList b:hover{color:#f0d78c}
+#accList b + b::before{content:'·';color:#4a3b23;margin-right:10px;text-decoration:none}
+.authFoot{margin-top:4px;font-size:10px;color:#5f533d;text-align:center;line-height:1.7}
+
+/* ---------- 账号角色面板 ---------- */
+#charBox{display:flex;flex-direction:column;align-items:center}
+#userBar{display:flex;align-items:center;gap:12px;font-size:11.5px;color:#8d7a58;
+  border:1px solid #3f3320;border-radius:20px;padding:6px 16px;margin-bottom:15px;background:rgba(0,0,0,.38)}
+#ubName{color:#f0d78c;letter-spacing:1px}
+#ubName b{color:#7fa8d8;font-weight:400}
+#ubOps b{color:#a08a60;cursor:pointer;font-weight:400;margin-left:4px;text-decoration:underline}
+#ubOps b:hover{color:#ff9b7a}
+#ubOps #ubDel{margin-right:16px}
+#roleInfo{display:flex;align-items:center;gap:16px;padding:13px 26px 13px 22px;margin-bottom:16px;
+  border:1px solid #5d4a2b;border-radius:8px;min-width:372px;
+  background:linear-gradient(180deg,rgba(40,31,18,.92),rgba(14,11,7,.96))}
+#roleInfo .rk{font-size:32px;line-height:1}
+#roleInfo .rc{display:flex;flex-direction:column;gap:4px}
+#roleInfo .rn{font-size:16px;color:#f2d68a;letter-spacing:2px}
+#roleInfo .rd{font-size:11px;color:#8d7a58;letter-spacing:1px}
+#roleInfo .rd em{color:#e8c96a;font-style:normal}
+#nameRow{display:flex;align-items:center;gap:8px;margin:0 0 13px;font-size:12px;color:#a08a60;letter-spacing:1px}
+#nameRow input{width:190px;background:rgba(0,0,0,.55);border:1px solid #4a3b23;border-radius:5px;
+  color:#f0e2bd;font-size:13px;padding:7px 10px;font-family:inherit;outline:none;text-align:center}
+#nameRow input:focus{border-color:#c8a353;box-shadow:0 0 0 2px rgba(200,163,83,.15)}
+#nameRow input::placeholder{color:#5f533d;letter-spacing:0}
+#legacyBtn{margin-top:10px;font-size:11.5px;color:#7fa8d8;cursor:pointer;text-decoration:underline;letter-spacing:1px}
+#legacyBtn:hover{color:#a8c8f0}
+#accPanel{left:50%;top:50%;transform:translate(-50%,-50%);width:300px}
+#accPanel .arow{display:flex;justify-content:space-between;font-size:12px;padding:5px 2px;border-bottom:1px dashed #3a2e1b}
+#accPanel .arow span:last-child{color:#f0d78c}
+#accPanel .abtn{margin-top:14px;padding:9px 0;text-align:center;font-size:12.5px;letter-spacing:2px;
+  border:1px solid #6b532c;border-radius:5px;cursor:pointer;color:#e8d5a4;
+  background:linear-gradient(180deg,#3a2e1a,#1b140c)}
+#accPanel .abtn:hover{border-color:#a8543c;color:#ffb0a0;background:linear-gradient(180deg,#4a2618,#241009)}
+#accPanel .abtn.ghost{margin-top:8px;color:#8d7a58;border-color:#3f3320;background:none}
+#accPanel .abtn.ghost:hover{color:#f0d78c;border-color:#6b532c}
+#accPanel .abtn.danger{color:#e8a89a;border-color:#6b3a2c}
+#accPanel .abtn.danger:hover{color:#ffb0a0;border-color:#a8543c;background:linear-gradient(180deg,#4a2618,#241009)}
+#accPanel .warn{font-size:10.5px;color:#7d6c4e;line-height:1.7;margin-top:9px;text-align:center}
 
 /* 死亡 */
 #dead{position:absolute;inset:0;background:rgba(60,0,0,.35);display:flex;flex-direction:column;
@@ -243,6 +381,7 @@ canvas#cv{display:block;width:100%;height:100%;cursor:crosshair;background:#141a
   <div id="hud">
     <div id="zone">比奇城</div>
     <div id="autoTag" class="hide"><i></i><span id="autoTagTxt">自动挂机中</span></div>
+    <div id="petTag" class="hide"><i></i><span id="petTagTxt">宠物</span></div>
     <div id="pinfo">
       <div id="avatar">战</div>
       <div>
@@ -260,6 +399,8 @@ canvas#cv{display:block;width:100%;height:100%;cursor:crosshair;background:#141a
       <div class="bar" id="exBar"><div class="fill" id="exFill"></div><div class="txt" id="exTxt">0%</div></div>
     </div>
 
+    <div id="quickbar"></div>
+    <div id="qsPanel" class="hide"></div>
     <div id="skillbar"></div>
 
     <div id="btns">
@@ -267,6 +408,7 @@ canvas#cv{display:block;width:100%;height:100%;cursor:crosshair;background:#141a
       <div class="btn" id="bChar">属性 C</div>
       <div class="btn" id="bTp">传送 T</div>
       <div class="btn" id="bAuto">挂机 G</div>
+      <div class="btn" id="bAcc">账号</div>
       <div class="btn" id="bHome">回城 R</div>
       <div class="btn" id="bSnd">♪</div>
     </div>
@@ -290,14 +432,14 @@ canvas#cv{display:block;width:100%;height:100%;cursor:crosshair;background:#141a
           <div class="pgbtn" id="pgSort" title="按品质重新排列">整理</div>
           <div class="pgbtn hot" id="pgRecycle" title="批量回收装备换金币">回收</div>
         </div>
-        <div id="goldLine"><span id="goldTxt">金币 0</span><span>左键使用/穿戴 · Shift+左键 出售（需在商人旁）· 每页 100 格</span></div>
+        <div id="goldLine"><span id="goldTxt">金币 0</span><span>左键使用/穿戴 · Shift+左键 出售（需在商人旁） · 右上 ▲ 强于身上 / ▼ 弱于身上 · 相同物品自动叠加</span></div>
       </div>
     </div>
     <div id="rcMask" class="hide"></div>
     <div id="recycleBox" class="hide">
       <h4>装备回收 <span class="x" id="rcClose">✕</span></h4>
       <div id="rcList"></div>
-      <div class="rline" id="rcAuto"><div class="box"></div><span>挂机拾到白色装备时自动回收</span></div>
+      <div class="rline" id="rcAuto"><div class="box"></div><span>挂机 / 宠物拾到白色装备时自动回收</span></div>
       <div id="rcFoot"><span id="rcSum">勾选品质后点回收</span><div id="rcDo">回收</div></div>
     </div>
   </div>
@@ -315,33 +457,86 @@ canvas#cv{display:block;width:100%;height:100%;cursor:crosshair;background:#141a
   <div id="tip"></div>
 
   <div id="start">
-    <h1>热血传奇</h1>
-    <div class="sub">单 机 版 · 玛 法 大 陆</div>
-    <div class="cards">
-      <div class="card" data-cls="warrior">
-        <div class="ico">⚔</div>
-        <div class="cn">战 士</div>
-        <div class="cd2">高血高防，近身肉搏<br>烈火剑法 · 半月弯刀 · 开天斩</div>
+    <div id="startInner">
+      <h1>热血传奇</h1>
+      <div class="sub">单 机 版 · 玛 法 大 陆</div>
+
+      <!-- 登录 / 注册 -->
+      <div id="authBox">
+        <div class="authTabs">
+          <div class="atab on" data-mode="login">登 录</div>
+          <div class="atab" data-mode="reg">注 册</div>
+        </div>
+        <div class="fld"><label>账号</label><input id="auName" maxlength="16" autocomplete="username" placeholder="2-16 位字母 / 数字 / 汉字"></div>
+        <div class="fld"><label>密码</label><input id="auPass" type="password" maxlength="24" autocomplete="current-password" placeholder="至少 4 位"></div>
+        <div class="fld hide" id="auPass2Wrap"><label>确认</label><input id="auPass2" type="password" maxlength="24" autocomplete="new-password" placeholder="再输入一次密码"></div>
+        <label class="chk"><input type="checkbox" id="auRemember"><span>记住我（下次打开自动登录）</span></label>
+        <button id="auBtn">登 录</button>
+        <div id="auMsg"></div>
+        <div id="accList" class="hide"></div>
+        <div class="authFoot">账号仅保存在本机浏览器，不上传网络<br>每个账号有独立存档，互不影响</div>
       </div>
-      <div class="card" data-cls="mage">
-        <div class="ico">✷</div>
-        <div class="cn">法 师</div>
-        <div class="cd2">远程爆发，脆皮高伤<br>雷电术 · 冰咆哮 · 流星火雨</div>
+
+      <!-- 选角 / 继续游戏 -->
+      <div id="charBox" class="hide">
+        <div id="userBar">
+          <span id="ubName">—</span>
+          <span id="ubOps"><b id="ubDel" class="hide">删除角色</b><b id="ubSwitch">切换账号</b></span>
+        </div>
+
+        <div id="roleInfo" class="hide">
+          <div class="rk" id="riIco">⚔</div>
+          <div class="rc">
+            <div class="rn" id="riName">—</div>
+            <div class="rd" id="riLine1">—</div>
+            <div class="rd" id="riLine2">—</div>
+          </div>
+        </div>
+
+        <div class="cards" id="clsCards">
+          <div class="card" data-cls="warrior">
+            <div class="ico">⚔</div>
+            <div class="cn">战 士</div>
+            <div class="cd2">高血高防，近身肉搏<br>烈火剑法 · 半月弯刀 · 开天斩</div>
+          </div>
+          <div class="card" data-cls="mage">
+            <div class="ico">✷</div>
+            <div class="cn">法 师</div>
+            <div class="cd2">远程爆发，脆皮高伤<br>雷电术 · 冰咆哮 · 流星火雨</div>
+          </div>
+          <div class="card" data-cls="taoist">
+            <div class="ico">☯</div>
+            <div class="cn">道 士</div>
+            <div class="cd2">治愈施毒，召唤神兽<br>灵魂火符 · 施毒术 · 召唤神兽</div>
+          </div>
+        </div>
+
+        <div id="nameRow"><label>角色名</label><input id="roleName" maxlength="10" placeholder="留空自动取名"></div>
+
+        <button id="startBtn" disabled>选 择 职 业</button>
+        <div id="contBtn" class="hide">读取上次存档继续游戏</div>
+        <div id="legacyBtn" class="hide">导入旧版本存档</div>
       </div>
-      <div class="card" data-cls="taoist">
-        <div class="ico">☯</div>
-        <div class="cn">道 士</div>
-        <div class="cd2">治愈施毒，召唤神兽<br>灵魂火符 · 施毒术 · 召唤神兽</div>
-      </div>
+
+      <div id="hint">鼠标左键点地面移动 / 点怪物攻击　　WASD 移动　　Q 锁定最近敌人<br>1-4 释放技能　E 终极技能（Lv.24）　　5/6/7 快捷药水（右键换药）　　I 背包　C 属性　R 回城<br>G 自动挂机（自动找怪 / 拾取 / 喝药）　　T 传送 13 张地图（含 BOSS 房）<br>主线：祖玛寺庙 → 沃玛寺庙 → 蜈蚣洞 → 石墓阵 → 赤月峡谷 → 牛魔寺庙 → 猪洞 → 封魔谷 → 魔龙城 → 幻境回廊<br>支线：藏宝阁（精英刷装）　　等级上限 Lv.60　·　10 大 BOSS　·　装备 7 部位 / 10 套套装</div>
     </div>
-    <button id="startBtn" disabled>选 择 职 业</button>
-    <div id="contBtn" class="hide">读取上次存档继续游戏</div>
-    <div id="hint">鼠标左键点地面移动 / 点怪物攻击　　WASD 移动　　Q 锁定最近敌人<br>1-4 释放技能　E 终极技能（Lv.24）　　5 金创药　6 魔法药　　I 背包　C 属性　R 回城<br>G 自动挂机（自动找怪 / 拾取 / 喝药）　　T 传送 12 个地点（含 5 大 BOSS 房）<br>地图：比奇城 → 沃玛森林 → 沃玛寺庙 / 祖玛寺庙 / 蜈蚣洞 → 石墓阵 → 赤月峡谷<br>装备 7 部位 · 5 套套装 · 精英怪与 BOSS 掉落</div>
   </div>
 
   <div id="dead" class="hide">
     <div class="t">你 死 了</div>
     <div class="s" id="deadTxt">3 秒后回到比奇城</div>
+  </div>
+
+  <div class="panel hide" id="accPanel">
+    <h3>账 号 <span class="x" data-close="accPanel">✕</span></h3>
+    <div class="arow"><span>账号</span><span id="apUser">—</span></div>
+    <div class="arow"><span>角色</span><span id="apRole">—</span></div>
+    <div class="arow"><span>等级</span><span id="apLv">—</span></div>
+    <div class="arow"><span>存档位置</span><span id="apMap">—</span></div>
+    <div class="abtn" id="apSave">保 存 进 度</div>
+    <div class="abtn danger" id="apLogout">保 存 并 退 出 登 录</div>
+    <div class="abtn ghost" id="apClose">继 续 游 戏</div>
+    <div class="warn">退出后进度保存在本机，同一账号重新登录即可继续。</div>
   </div>
 </div>
 
@@ -513,6 +708,41 @@ const MONS = {
   moonSpider:{name:'月魔蜘蛛',lv:39, hp:3900, atk:276, def:76, exp:5200, spd:104,rng:320,cd:1.8, size:26, agg:500, gold:[130,300], drop:0.40, ranged:true },
   moonDemon:{ name:'赤月恶魔',lv:42, hp:120000,atk:330, def:94, exp:45000,spd:78, rng:86, cd:1.3, size:56, agg:720, gold:[3600,7200], drop:1, boss:true, respawn:360, loot:'moon', skill:{ type:'scythe', cd:5.5, radius:190, mult:1.6, n:8 } },
 
+  /* ---- 牛魔寺庙 ---- */
+  bullWarrior:{ name:'牛魔战士', lv:46, hp:5200, atk:340, def:104, exp:8200,  spd:88, rng:46, cd:1.4, size:24, agg:460, gold:[150,380], drop:0.40 },
+  bullPriest: { name:'牛魔祭司', lv:47, hp:4600, atk:390, def:96,  exp:9000,  spd:58, rng:320,cd:1.9, size:23, agg:500, gold:[170,400], drop:0.42, ranged:true },
+  bullGeneral:{ name:'牛魔战将', lv:49, hp:6600, atk:420, def:118, exp:11500, spd:90, rng:50, cd:1.4, size:30, agg:520, gold:[200,460], drop:0.45 },
+  niumoKing:  { name:'牛魔王',   lv:50, hp:200000,atk:470,def:132, exp:90000, spd:84, rng:80, cd:1.3, size:54, agg:760, gold:[6000,12000], drop:1, boss:true, respawn:300, loot:'niumo', skill:{ type:'charge', cd:7, dist:340, mult:2.2 } },
+
+  /* ---- 猪洞 ---- */
+  maggot:   { name:'猪洞恶蛆', lv:50, hp:5000, atk:360, def:108, exp:9000,  spd:70, rng:38, cd:1.5, size:22, agg:450, gold:[160,400], drop:0.40 },
+  boar:     { name:'野猪',     lv:52, hp:6800, atk:420, def:120, exp:11500, spd:112,rng:44, cd:1.2, size:26, agg:500, gold:[190,450], drop:0.42 },
+  hongDevil:{ name:'虹魔教徒', lv:53, hp:6200, atk:470, def:112, exp:12500, spd:62, rng:310,cd:1.8, size:23, agg:520, gold:[210,470], drop:0.44, ranged:true },
+  pigGuard: { name:'虹魔猪卫', lv:53, hp:28000,atk:480, def:126, exp:34000, spd:84, rng:56, cd:1.5, size:34, agg:600, gold:[900,1800], drop:0.90, mini:true },
+  pigKing:  { name:'猪王',     lv:54, hp:240000,atk:510,def:142, exp:110000,spd:92, rng:74, cd:1.3, size:50, agg:780, gold:[7000,14000], drop:1, boss:true, respawn:330, loot:'pig', skill:{ type:'summon', cd:10, unit:'boar', n:2 } },
+
+  /* ---- 封魔谷 ---- */
+  fmGuard:  { name:'封魔侍卫', lv:55, hp:9000, atk:540, def:150, exp:15000, spd:88, rng:48, cd:1.4, size:26, agg:520, gold:[260,560], drop:0.44 },
+  fmMage:   { name:'封魔法师', lv:56, hp:8200, atk:620, def:142, exp:16500, spd:58, rng:330,cd:1.8, size:24, agg:540, gold:[280,580], drop:0.46, ranged:true },
+  fmBlade:  { name:'封魔刀客', lv:57, hp:10500,atk:600, def:162, exp:18500, spd:104,rng:50, cd:1.2, size:27, agg:560, gold:[300,620], drop:0.46 },
+  fengmoLord:{name:'封魔谷主', lv:58, hp:270000,atk:650,def:168, exp:150000,spd:86, rng:82, cd:1.3, size:52, agg:800, gold:[9000,18000], drop:1, boss:true, respawn:360, loot:'fengmo', skill:{ type:'beam', cd:6.5, len:520, width:46, mult:2.6 } },
+
+  /* ---- 魔龙城 ---- */
+  mlGuard:  { name:'魔龙卫士', lv:58, hp:12000,atk:660, def:178, exp:20000, spd:80, rng:54, cd:1.5, size:30, agg:560, gold:[340,700], drop:0.46 },
+  mlPriest: { name:'魔龙祭司', lv:59, hp:11000,atk:720, def:172, exp:22000, spd:60, rng:340,cd:1.8, size:25, agg:580, gold:[360,720], drop:0.48, ranged:true },
+  mlGeneral:{ name:'魔龙战将', lv:60, hp:14500,atk:760, def:192, exp:26000, spd:96, rng:56, cd:1.3, size:32, agg:600, gold:[400,800], drop:0.50 },
+  dragonLord:{name:'魔龙教主', lv:62, hp:320000,atk:780,def:188, exp:240000,spd:90, rng:88, cd:1.2, size:62, agg:840, gold:[14000,28000], drop:1, boss:true, respawn:420, loot:'molong', skill:{ type:'cycle', cd:6, list:[{type:'nova', n:14},{type:'slam', radius:210, mult:2.4},{type:'charge', dist:360, mult:2.2}] } },
+
+  /* ---- 幻境 ---- */
+  phShadow: { name:'幻影武士', lv:60, hp:13000,atk:700, def:182, exp:23000, spd:110,rng:48, cd:1.2, size:27, agg:580, gold:[380,780], drop:0.48 },
+  phMage:   { name:'幻境法师', lv:61, hp:11500,atk:790, def:176, exp:24500, spd:60, rng:350,cd:1.7, size:25, agg:600, gold:[400,800], drop:0.50, ranged:true },
+  phDemon:  { name:'幻境魔卫', lv:62, hp:15500,atk:810, def:196, exp:28000, spd:92, rng:56, cd:1.3, size:34, agg:620, gold:[440,880], drop:0.50 },
+  phantomLord:{name:'幻境魔王',lv:65, hp:420000,atk:900,def:205, exp:400000,spd:92, rng:92, cd:1.2, size:60, agg:880, gold:[20000,40000], drop:1, boss:true, respawn:480, loot:'huanjing', skill:{ type:'cycle', cd:5.2, list:[{type:'slam', radius:230, mult:2.6},{type:'beam', len:560, width:50, mult:2.8},{type:'nova', n:16},{type:'summon', unit:'phDemon', n:1}] } },
+
+  /* ---- 藏宝阁（刷装地图） ---- */
+  tgGuard:  { name:'宝阁守卫', lv:50, hp:9000, atk:520, def:140, exp:16000, spd:86, rng:46, cd:1.4, size:28, agg:500, gold:[300,600], drop:0.60 },
+  tgBoss:   { name:'宝阁镇守', lv:52, hp:90000,atk:560, def:150, exp:60000, spd:84, rng:66, cd:1.4, size:44, agg:700, gold:[3000,6000], drop:1, boss:true, respawn:200, skill:{ type:'slam', radius:170, mult:1.8 } },
+
   /* ---- 祖玛 ---- */
   boss:    { name:'祖玛教主',lv:23, hp:18000, atk:98,  def:32, exp:6200, spd:74, rng:64, cd:1.5, size:42, agg:580, gold:[400,900],drop:1, boss:true, respawn:180, loot:'zuma', skill:{ type:'summon', cd:12, unit:'skel', n:3 } }
 };
@@ -529,7 +759,13 @@ const GEAR = {
     { name:'龙纹剑',    lv:24, atk:64,  mag:10, price:7800 },
     { name:'骨玉权杖',  lv:28, atk:58,  mag:24, price:9800 },
     { name:'屠龙刀',    lv:32, atk:84,  crit:3, price:15000 },
-    { name:'嗜血魔剑',  lv:36, atk:96,  crit:3, ls:5, price:21000 }
+    { name:'嗜血魔剑',  lv:36, atk:96,  crit:3, ls:5, price:21000 },
+    { name:'裂地战刃',  lv:40, atk:110, crit:3, ls:4, price:30000 },
+    { name:'怒斩',      lv:44, atk:126, crit:4, ls:5, price:42000 },
+    { name:'开天',      lv:48, atk:144, crit:4, ls:6, price:58000 },
+    { name:'魔龙之牙',  lv:52, atk:165, crit:5, ls:6, price:76000 },
+    { name:'幻境·弑神', lv:56, atk:188, crit:6, ls:8, price:98000 },
+    { name:'天命·无字诀',lv:60,atk:214, crit:7, ls:10, price:130000 }
   ],
   armor: [
     { name:'布衣',      lv:1,  def:2,  hp:8,   price:70 },
@@ -541,7 +777,12 @@ const GEAR = {
     { name:'圣战宝甲',  lv:24, def:33, hp:150, price:8200 },
     { name:'雷霆战甲',  lv:28, def:40, hp:195, price:11000 },
     { name:'天龙圣衣',  lv:32, def:48, hp:250, mag:15, price:16000 },
-    { name:'凤天魔甲',  lv:38, def:58, hp:330, crit:2, price:26000 }
+    { name:'凤天魔甲',  lv:38, def:58, hp:330, crit:2, price:26000 },
+    { name:'裂地战甲',  lv:42, def:66, hp:390, crit:2, price:36000 },
+    { name:'怒血战袍',  lv:46, def:76, hp:460, crit:3, price:50000 },
+    { name:'开天圣甲',  lv:50, def:86, hp:540, crit:3, price:66000 },
+    { name:'魔龙鳞甲',  lv:54, def:98, hp:630, crit:4, price:88000 },
+    { name:'幻境·虚天甲',lv:58,def:110, hp:730, crit:5, price:115000 }
   ],
   helm: [
     { name:'皮盔',      lv:2,  def:1,  hp:6,   price:60 },
@@ -549,7 +790,12 @@ const GEAR = {
     { name:'骷髅头盔',  lv:12, def:7,  hp:30,  price:900 },
     { name:'圣战头盔',  lv:18, def:11, hp:52,  price:2400 },
     { name:'黑铁头盔',  lv:22, def:14, hp:70,  price:4200 },
-    { name:'战神头盔',  lv:32, def:20, hp:110, price:12000 }
+    { name:'战神头盔',  lv:32, def:20, hp:110, price:12000 },
+    { name:'裂地盔',    lv:38, def:24, hp:130, price:18000 },
+    { name:'怒血盔',    lv:42, def:28, hp:155, price:25000 },
+    { name:'开天盔',    lv:46, def:33, hp:185, price:34000 },
+    { name:'魔龙角盔',  lv:50, def:38, hp:220, crit:2, price:46000 },
+    { name:'幻境·天罡盔',lv:55,def:44, hp:260, crit:3, price:62000 }
   ],
   neck: [
     { name:'银项链',    lv:3,  atk:2,  mp:6,   price:90 },
@@ -557,7 +803,12 @@ const GEAR = {
     { name:'幽灵项链',  lv:15, atk:9,  mp:26,  price:1300 },
     { name:'恶魔项链',  lv:20, atk:13, crit:2, price:3600 },
     { name:'龙之心',    lv:24, atk:16, hp:40, mag:10, price:6400 },
-    { name:'龙神项链',  lv:34, atk:30, hp:90, crit:3, price:17000 }
+    { name:'龙神项链',  lv:34, atk:30, hp:90, crit:3, price:17000 },
+    { name:'裂地项链',  lv:38, atk:34, hp:110, crit:3, price:24000 },
+    { name:'怒血项链',  lv:42, atk:39, hp:135, crit:4, price:33000 },
+    { name:'开天项链',  lv:46, atk:45, hp:165, crit:4, price:44000 },
+    { name:'魔龙之心',  lv:50, atk:52, hp:200, crit:5, price:60000 },
+    { name:'幻境·天机坠',lv:55,atk:60, hp:245, crit:5, ls:3, price:80000 }
   ],
   ring: [
     { name:'铜戒指',    lv:3,  atk:2,  def:1,  price:80 },
@@ -565,7 +816,12 @@ const GEAR = {
     { name:'紫碧螺',    lv:15, mag:8,  mp:22,  price:1200 },
     { name:'骑士戒指',  lv:20, atk:10, def:3,  price:3400 },
     { name:'龙之戒指',  lv:24, atk:14, crit:2, price:6200 },
-    { name:'王者之戒',  lv:34, atk:26, hp:70, crit:2, price:16000 }
+    { name:'王者之戒',  lv:34, atk:26, hp:70, crit:2, price:16000 },
+    { name:'裂地指环',  lv:38, atk:30, hp:85, crit:3, price:23000 },
+    { name:'怒血魔戒',  lv:42, atk:35, hp:105, crit:3, price:32000 },
+    { name:'开天指环',  lv:46, atk:41, hp:130, crit:4, price:43000 },
+    { name:'魔龙指环',  lv:50, atk:48, hp:160, crit:4, ls:2, price:58000 },
+    { name:'幻境·天罚戒',lv:55,atk:56, hp:195, crit:5, ls:4, price:78000 }
   ],
   belt: [
     { name:'布带',      lv:1,  def:1,  hp:5,   price:50 },
@@ -573,7 +829,12 @@ const GEAR = {
     { name:'铁腰带',    lv:12, def:6,  hp:28,  price:760 },
     { name:'力量腰带',  lv:18, atk:4,  def:6,  hp:42, price:2200 },
     { name:'龙鳞腰带',  lv:26, def:12, hp:80,  price:6800 },
-    { name:'圣龙腰带',  lv:34, def:18, hp:130, crit:2, price:15000 }
+    { name:'圣龙腰带',  lv:34, def:18, hp:130, crit:2, price:15000 },
+    { name:'裂地腰带',  lv:38, def:21, hp:150, crit:2, price:21000 },
+    { name:'怒血腰带',  lv:42, def:24, hp:175, crit:3, price:29000 },
+    { name:'开天腰带',  lv:46, def:28, hp:205, crit:3, price:39000 },
+    { name:'魔龙腰带',  lv:50, def:32, hp:240, crit:3, price:53000 },
+    { name:'幻境·天玑带',lv:55,def:37, hp:280, crit:4, price:72000 }
   ],
   boots: [
     { name:'草鞋',      lv:1,  def:1,  hp:4,   price:40 },
@@ -581,7 +842,12 @@ const GEAR = {
     { name:'铁靴',      lv:11, def:5,  hp:20,  price:680 },
     { name:'疾风靴',    lv:17, def:6,  hp:26,  crit:2, price:1900 },
     { name:'龙行靴',    lv:26, def:11, hp:70,  crit:2, price:6600 },
-    { name:'踏云靴',    lv:34, def:17, hp:120, crit:3, price:14800 }
+    { name:'踏云靴',    lv:34, def:17, hp:120, crit:3, price:14800 },
+    { name:'裂地战靴',  lv:38, def:20, hp:140, crit:3, price:20000 },
+    { name:'怒血战靴',  lv:42, def:23, hp:165, crit:3, price:28000 },
+    { name:'开天战靴',  lv:46, def:27, hp:195, crit:4, price:38000 },
+    { name:'魔龙战靴',  lv:50, def:31, hp:230, crit:4, price:52000 },
+    { name:'幻境·踏虚靴',lv:55,def:35, hp:270, crit:5, price:70000 }
   ]
 };
 
@@ -618,6 +884,39 @@ const SETS = {
       { slot:'neck', name:'赤月项链', lv:39, atk:46, crit:4, price:24000 },
       { slot:'ring', name:'赤月魔戒', lv:40, atk:50, crit:4, ls:5, price:26000 },
       { slot:'boots',name:'赤月魔靴', lv:40, def:32, hp:190, crit:3, price:26000 }
+    ] },
+  niumo: { name:'牛魔套装', need:3, color:'#ff8a4a', bonus:{ atk:38, hp:310, def:15, crit:4 },
+    items:[
+      { slot:'helm', name:'牛魔角盔', lv:48, def:34, hp:190, price:32000 },
+      { slot:'belt', name:'牛魔腰带', lv:49, def:28, hp:200, crit:2, price:33000 },
+      { slot:'ring', name:'牛魔战戒', lv:49, atk:44, hp:120, crit:3, price:33000 }
+    ] },
+  pig: { name:'虹魔套装', need:3, color:'#ff5a8a', bonus:{ atk:54, hp:430, def:21, crit:5, ls:4 },
+    items:[
+      { slot:'helm', name:'虹魔面甲', lv:52, def:40, hp:235, price:44000 },
+      { slot:'boots',name:'虹魔战靴', lv:52, def:34, hp:225, crit:3, price:44000 },
+      { slot:'ring', name:'虹魔魔戒', lv:53, atk:50, hp:140, crit:4, ls:3, price:46000 }
+    ] },
+  fengmo: { name:'封魔套装', need:4, color:'#c58ff0', bonus:{ atk:80, hp:620, def:33, crit:7, ls:7 },
+    items:[
+      { slot:'helm', name:'封魔面甲', lv:56, def:46, hp:285, price:62000 },
+      { slot:'belt', name:'封魔腰带', lv:56, def:40, hp:285, crit:3, price:62000 },
+      { slot:'boots',name:'封魔战靴', lv:57, def:38, hp:275, crit:4, price:64000 },
+      { slot:'neck', name:'封魔项链', lv:57, atk:60, hp:190, crit:5, price:64000 }
+    ] },
+  molong: { name:'魔龙套装', need:4, color:'#6ac8ff', bonus:{ atk:122, hp:920, def:49, crit:10, ls:10 },
+    items:[
+      { slot:'helm', name:'魔龙圣盔', lv:58, def:52, hp:335, price:86000 },
+      { slot:'belt', name:'魔龙圣带', lv:58, def:46, hp:335, crit:4, price:86000 },
+      { slot:'boots',name:'魔龙圣靴', lv:59, def:44, hp:325, crit:5, price:88000 },
+      { slot:'ring', name:'魔龙圣戒', lv:59, atk:70, hp:220, crit:6, ls:4, price:88000 }
+    ] },
+  huanjing: { name:'幻境套装', need:4, color:'#e07aff', bonus:{ atk:175, hp:1320, def:66, crit:13, ls:14 },
+    items:[
+      { slot:'helm', name:'幻境王冠', lv:60, def:60, hp:405, price:118000 },
+      { slot:'neck', name:'幻境神链', lv:60, atk:80, hp:280, crit:6, price:118000 },
+      { slot:'ring', name:'幻境魔戒', lv:60, atk:86, hp:300, crit:6, ls:6, price:122000 },
+      { slot:'boots',name:'幻境虚靴', lv:60, def:52, hp:385, crit:5, price:122000 }
     ] }
 };
 for (const sk in SETS){
@@ -634,17 +933,31 @@ const POTIONS = {
   hp1: { name:'金创药(小)', heal:70,  price:30,  icon:'药', slot:'potion' },
   hp2: { name:'金创药(中)', heal:180, price:90,  icon:'药', slot:'potion' },
   hp3: { name:'太阳水',     heal:420, price:260, icon:'丹', slot:'potion' },
+  hp4: { name:'超级太阳水', heal:1000,price:640, icon:'丹', slot:'potion' },
   mp1: { name:'魔法药(小)', mana:45,  price:35,  icon:'瓶', slot:'potion' },
   mp2: { name:'魔法药(中)', mana:120, price:100, icon:'瓶', slot:'potion' },
-  mp3: { name:'魔法药(大)', mana:280, price:280, icon:'罐', slot:'potion' }
+  mp3: { name:'魔法药(大)', mana:280, price:280, icon:'罐', slot:'potion' },
+  mp4: { name:'超级魔法药', mana:700, price:660, icon:'罐', slot:'potion' }
 };
+
+/* ---------------------------------------------------------
+   2.5 宠物（自动拾取）
+   --------------------------------------------------------- */
+const PET_MAX_LV = 5;
+const PETS = {
+  wolf:  { name:'苍狼幼崽', glyph:'狼', color:'#a8c0d8', price:1500,   needLv:1,  radius:150, speed:210, cd:0.75, desc:'初出茅庐的小狼，替你叼回脚边的战利品' },
+  cat:   { name:'招财灵猫', glyph:'猫', color:'#f0c85a', price:18000,  needLv:15, radius:225, speed:240, cd:0.55, desc:'眼睛最尖，拾取范围更广、间隔更短' },
+  hound: { name:'幽冥灵犬', glyph:'犬', color:'#7fd8ff', price:90000,  needLv:30, radius:305, speed:270, cd:0.40, desc:'幽冥猎犬，穿梭战场叼回散落的装备' },
+  qilin: { name:'踏云麒麟', glyph:'麟', color:'#ff9ad8', price:400000, needLv:45, radius:420, speed:300, cd:0.26, desc:'瑞兽踏云而行，拾取范围覆盖半屏' }
+};
+const PET_ORDER = ['wolf', 'cat', 'hound', 'qilin'];
 
 /* ---------------------------------------------------------
    3. 全局状态
    --------------------------------------------------------- */
 /* 背包容量：1000 页 × 100 格 */
 const INV_PER_PAGE = 100, INV_PAGES = 1000, INV_CAP = INV_PER_PAGE * INV_PAGES;
-const LV_CAP = 45;
+const LV_CAP = 60;
 
 const G = {
   player: null,
@@ -655,7 +968,7 @@ const G = {
   running: false,
   paused: false,
   mouse: { x:0, y:0, wx:0, wy:0 },
-  fx: { swings:[], rings:[], bolts:[], texts:[], parts:[] },
+  fx: { swings:[], rings:[], bolts:[], beams:[], texts:[], parts:[] },
   shops: null,
   keys: {},
   portalCd: 0,
@@ -665,7 +978,10 @@ const G = {
   rcSel: { 0:true, 1:true, 2:false, 3:false },
   rcArmT: 0,
   autoSellQ0: false,
-  auto: { on:false, potionCd:0, stuckT:0, lx:0, ly:0, bagWarnT:0, lootT:0, sellN:0, sellGold:0, sellT:0 }
+  bossKills: {},          // 已击败 BOSS 记录（按 loot 键）→ 用于解锁后续地图
+  pet: { type:null, lv:1, on:true, x:0, y:0, inited:false, pickCd:0, animT:0, blinkT:0, pickFlash:0, arm:null, armT:0 },
+  quick: ['*hp', '*mp', '*big'],   // 快捷药水格：*hp/*mp 自动挑药，*big 喝最大瓶，具体键名则锁定该药
+  auto: { on:false, potionCd:0, mpCd:0, stuckT:0, lx:0, ly:0, bagWarnT:0, lootT:0, sellN:0, sellGold:0, sellT:0 }
 };
 
 /* ---------------------------------------------------------
@@ -682,7 +998,7 @@ function blankMap(w, h, base){
   for (let i = 0; i < m.tile.length; i++) m.blocked[i] = BLOCK_TILES.has(m.tile[i]) ? 1 : 0;
   return m;
 }
-const BLOCK_TILES = new Set([4, 5, 6, 7, 10, 11, 12, 15, 17, 19]);
+const BLOCK_TILES = new Set([4, 5, 6, 7, 10, 11, 12, 15, 17, 19, 21, 23, 25, 27, 29]);
 
 function setT(m, x, y, v){
   if (x < 0 || y < 0 || x >= m.w || y >= m.h) return;
@@ -724,6 +1040,15 @@ function carveRoom(m, r, floor){
   rectT(m, r.x, r.y, r.x + r.w - 1, r.y + r.h - 1, floor);
 }
 function roomCenter(r){ return { x: r.x + (r.w >> 1), y: r.y + (r.h >> 1) }; }
+/* 椭圆洞窟（用于自然形态的洞穴地图） */
+function carveBlob(m, cx, cy, rx, ry, floor){
+  for (let y = cy - ry; y <= cy + ry; y++){
+    for (let x = cx - rx; x <= cx + rx; x++){
+      const dx = (x - cx) / rx, dy = (y - cy) / ry;
+      if (dx * dx + dy * dy <= 1) setT(m, x, y, floor);
+    }
+  }
+}
 function carveLink(m, a, b, floor, wid){
   wid = wid || 3;
   const A = roomCenter(a), B = roomCenter(b);
@@ -809,6 +1134,7 @@ function buildVillage(){
   m.portals.push({ x:31, y:h - 3, to:'field', tx:40, ty:6, label:'沃玛森林' });
   clearArea(m, 31, h - 3, 3, 2);
 
+  m.npcs.push({ name:'宠物商人', kind:'shop', shop:'pet',    x:21, y:15, glyph:'宠', color:'#d8a85a' });
   m.npcs.push({ name:'药店老板', kind:'shop', shop:'potion', x:12, y:15, glyph:'药', color:'#7ec87e' });
   m.npcs.push({ name:'武器商人', kind:'shop', shop:'gear',   x:49, y:15, glyph:'刀', color:'#c8a353' });
   m.npcs.push({ name:'传送老兵', kind:'tp',                  x:27, y:31, glyph:'传', color:'#5aa8e8' });
@@ -1151,7 +1477,11 @@ function buildCanyon(){
   m.deco.push({ t:'bones', x:68, y:20 });
   m.deco.push({ t:'bones', x:66, y:48 });
 
+  // 谷口广场（确保入口传送门站在可通行地面上）
+  carveBlob(m, 43, 65, 7, 4, 18);
+
   m.portals.push({ x:43, y:67, to:'tomb', tx:35, ty:47, label:'石墓阵' });
+  m.portals.push({ x:52, y:5,  to:'niumo', tx:40, ty:58, label:'牛魔寺庙', req:'moon', reqName:'赤月恶魔' });
   clearArea(m, 43, 66, 4, 3);
 
   spawnMonsters(m, 'spider',     14, 8, 26, 80, 62, 0.10);
@@ -1163,9 +1493,314 @@ function buildCanyon(){
   return m;
 }
 
+/* ---------- 牛魔寺庙 ---------- */
+function buildNiumo(){
+  const w = 80, h = 66;
+  const m = blankMap(w, h, 21);
+  m.id = 'niumo'; m.name = '牛魔寺庙'; m.minLv = 46;
+
+  const rooms = [
+    { x:33, y:56, w:14, h:7 },    // 0 入口
+    { x:30, y:38, w:20, h:13 },   // 1 前殿
+    { x:7,  y:44, w:14, h:10 },   // 2 西廊
+    { x:59, y:44, w:14, h:10 },   // 3 东廊
+    { x:6,  y:20, w:15, h:12 },   // 4 西祭坛
+    { x:59, y:20, w:15, h:12 },   // 5 东祭坛
+    { x:28, y:20, w:24, h:14 },   // 6 中庭
+    { x:26, y:4,  w:28, h:14 }    // 7 牛魔王殿
+  ];
+  rooms.forEach(r => carveRoom(m, r, 20));
+  const link = (i, j) => carveLink(m, rooms[i], rooms[j], 20, 3);
+  link(0,1); link(1,2); link(1,3); link(2,4); link(3,5); link(4,6); link(5,6); link(1,6); link(6,7);
+
+  // 立柱
+  for (const [px, py] of [[10,44],[18,44],[62,44],[70,44],[10,22],[16,22],[62,22],[68,22],
+                          [31,41],[49,41],[31,10],[49,10]]){
+    if (!m.blocked[py * m.w + px]) setT(m, px, py, 21);
+  }
+  rectT(m, 36, 6, 43, 16, 13);      // 殿内红毯
+  m.deco.push({ t:'altar', x:40, y:6 });
+  m.deco.push({ t:'brazier', x:30, y:7 });
+  m.deco.push({ t:'brazier', x:50, y:7 });
+  m.deco.push({ t:'brazier', x:32, y:40 });
+  m.deco.push({ t:'brazier', x:48, y:40 });
+  m.deco.push({ t:'bones', x:14, y:48 });
+  m.deco.push({ t:'bones', x:66, y:48 });
+  m.deco.push({ t:'bones', x:12, y:26 });
+  m.deco.push({ t:'bones', x:70, y:26 });
+
+  m.portals.push({ x:40, y:60, to:'canyon',  tx:43, ty:7,  label:'赤月峡谷' });
+  m.portals.push({ x:50, y:6,  to:'pigcave', tx:10, ty:58, label:'猪洞七层', req:'niumo', reqName:'牛魔王' });
+  m.portals.push({ x:8,  y:30, to:'treasure',tx:27, ty:38, label:'藏宝阁' });
+
+  spawnMonsters(m, 'bullWarrior', 16, 8, 40, 72, 52, 0.10);
+  spawnMonsters(m, 'bullPriest',   8, 8, 22, 72, 52, 0.06);
+  spawnMonsters(m, 'bullGeneral',  8, 10, 22, 70, 50, 0.10);
+  m.ents.push(makeMonster('niumoKing', 40, 11));
+  spawnMonsters(m, 'bullGeneral', 3, 30, 6, 50, 17, 0.2);
+
+  return m;
+}
+
+/* ---------- 猪洞七层 ---------- */
+function buildPigcave(){
+  const w = 84, h = 70;
+  const m = blankMap(w, h, 23);
+  m.id = 'pigcave'; m.name = '猪洞七层'; m.minLv = 50;
+
+  const blobs = [
+    { x:8,  y:60, rx:7, ry:5 },   // 0 入口
+    { x:28, y:56, rx:8, ry:5 },   // 1
+    { x:50, y:58, rx:8, ry:5 },   // 2
+    { x:68, y:50, rx:7, ry:5 },   // 3
+    { x:66, y:32, rx:8, ry:6 },   // 4
+    { x:46, y:40, rx:9, ry:6 },   // 5
+    { x:22, y:40, rx:8, ry:6 },   // 6
+    { x:10, y:26, rx:7, ry:5 },   // 7
+    { x:28, y:20, rx:8, ry:6 },   // 8
+    { x:52, y:20, rx:8, ry:6 },   // 9
+    { x:70, y:16, rx:6, ry:5 }    // 10
+  ];
+  for (const b of blobs) carveBlob(m, b.x, b.y, b.rx, b.ry, 22);
+  carveBlob(m, 41, 32, 12, 9, 22);          // 11 王巢
+
+  const carveLine = (A, B, rr) => {
+    const steps = Math.max(Math.abs(A.x - B.x), Math.abs(A.y - B.y)) | 0;
+    for (let i = 0; i <= steps; i++){
+      const t = steps ? i / steps : 0;
+      carveBlob(m, Math.round(A.x + (B.x - A.x) * t), Math.round(A.y + (B.y - A.y) * t), rr, rr, 22);
+    }
+  };
+  const segs = [[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[8,9],[9,10]];
+  for (const [a, b] of segs) carveLine(blobs[a], blobs[b], 2);
+  carveLine(blobs[5], { x:41, y:32 }, 2);
+  carveLine(blobs[6], { x:41, y:32 }, 2);
+  carveLine(blobs[8], { x:41, y:32 }, 2);
+  carveLine(blobs[9], { x:41, y:32 }, 2);
+
+  for (const [px, py] of [[41,23],[29,32],[53,32],[41,41]]){
+    if (!m.blocked[py * m.w + px]) setT(m, px, py, 23);
+  }
+  m.deco.push({ t:'bones', x:32, y:36 });
+  m.deco.push({ t:'bones', x:50, y:36 });
+  m.deco.push({ t:'bones', x:18, y:52 });
+  m.deco.push({ t:'bones', x:56, y:54 });
+  m.deco.push({ t:'bones', x:30, y:24 });
+  m.deco.push({ t:'brazier', x:37, y:30 });
+  m.deco.push({ t:'brazier', x:45, y:30 });
+
+  m.portals.push({ x:7,  y:63, to:'niumo',  tx:40, ty:58, label:'牛魔寺庙' });
+  m.portals.push({ x:70, y:12, to:'fengmo', tx:44, ty:68, label:'封魔谷', req:'pig', reqName:'猪王' });
+
+  spawnMonsters(m, 'maggot',    16, 6, 16, 76, 62, 0.10);
+  spawnMonsters(m, 'boar',      12, 6, 16, 76, 62, 0.12);
+  spawnMonsters(m, 'hongDevil',  8, 20, 14, 76, 46, 0.08);
+  m.ents.push(makeMonster('pigKing', 41, 30));
+  m.ents.push(makeMonster('pigGuard', 30, 36));
+  m.ents.push(makeMonster('pigGuard', 52, 36));
+
+  return m;
+}
+
+/* ---------- 封魔谷 ---------- */
+function buildFengmo(){
+  const w = 90, h = 74;
+  const m = blankMap(w, h, 25);
+  m.id = 'fengmo'; m.name = '封魔谷'; m.minLv = 54;
+
+  const blobs = [
+    { x:44, y:64, rx:9,  ry:6 },   // 0 谷口
+    { x:44, y:44, rx:13, ry:8 },   // 1 中谷
+    { x:16, y:40, rx:11, ry:9 },   // 2 西谷
+    { x:74, y:40, rx:11, ry:9 },   // 3 东谷
+    { x:44, y:20, rx:14, ry:9 },   // 4 北谷
+    { x:44, y:6,  rx:14, ry:7 }    // 5 魔殿
+  ];
+  for (const b of blobs) carveBlob(m, b.x, b.y, b.rx, b.ry, 24);
+  const carveLine = (A, B, rr) => {
+    const steps = Math.max(Math.abs(A.x - B.x), Math.abs(A.y - B.y)) | 0;
+    for (let i = 0; i <= steps; i++){
+      const t = steps ? i / steps : 0;
+      carveBlob(m, Math.round(A.x + (B.x - A.x) * t), Math.round(A.y + (B.y - A.y) * t), rr, rr, 24);
+    }
+  };
+  carveLine(blobs[0], blobs[1], 2);
+  carveLine(blobs[1], blobs[2], 2);
+  carveLine(blobs[1], blobs[3], 2);
+  carveLine(blobs[1], blobs[4], 2);
+  carveLine(blobs[2], blobs[4], 2);
+  carveLine(blobs[3], blobs[4], 2);
+  carveLine(blobs[4], blobs[5], 3);
+
+  // 岩浆潭
+  carveBlob(m, 11, 34, 5, 3, 10);
+  carveBlob(m, 79, 34, 5, 3, 10);
+  carveBlob(m, 37, 46, 4, 2, 10);
+  carveBlob(m, 51, 47, 4, 2, 10);
+  // 焦岩立柱
+  for (const [px, py] of [[31,20],[57,20],[31,31],[57,31],[44,26]]){
+    if (!m.blocked[py * m.w + px]) setT(m, px, py, 25);
+  }
+  m.deco.push({ t:'altar', x:44, y:7 });
+  m.deco.push({ t:'brazier', x:36, y:6 });
+  m.deco.push({ t:'brazier', x:52, y:6 });
+  m.deco.push({ t:'brazier', x:44, y:14 });
+  m.deco.push({ t:'bones', x:22, y:44 });
+  m.deco.push({ t:'bones', x:68, y:44 });
+  m.deco.push({ t:'bones', x:44, y:34 });
+
+  m.portals.push({ x:44, y:69, to:'pigcave', tx:68, ty:46, label:'猪洞七层' });
+  m.portals.push({ x:36, y:3,  to:'molong',  tx:44, ty:68, label:'魔龙城', req:'fengmo', reqName:'封魔谷主' });
+
+  spawnMonsters(m, 'fmGuard',  16, 6, 14, 84, 62, 0.10);
+  spawnMonsters(m, 'fmMage',    8, 8, 12, 84, 58, 0.08);
+  spawnMonsters(m, 'fmBlade',  10, 8, 16, 84, 58, 0.12);
+  m.ents.push(makeMonster('fengmoLord', 44, 10));
+  spawnMonsters(m, 'fmBlade', 3, 34, 6, 54, 16, 0.2);
+
+  return m;
+}
+
+/* ---------- 魔龙城 ---------- */
+function buildMolong(){
+  const w = 88, h = 74;
+  const m = blankMap(w, h, 27);
+  m.id = 'molong'; m.name = '魔龙城'; m.minLv = 58;
+
+  const rooms = [
+    { x:36, y:64, w:16, h:7 },    // 0 城门
+    { x:30, y:50, w:28, h:11 },   // 1 外院
+    { x:6,  y:48, w:16, h:12 },   // 2 西南塔
+    { x:66, y:48, w:16, h:12 },   // 3 东南塔
+    { x:6,  y:22, w:15, h:12 },   // 4 西北塔
+    { x:67, y:22, w:15, h:12 },   // 5 东北塔
+    { x:28, y:30, w:32, h:14 },   // 6 内城
+    { x:30, y:8,  w:28, h:16 }    // 7 王座
+  ];
+  rooms.forEach(r => carveRoom(m, r, 26));
+  const link = (i, j) => carveLink(m, rooms[i], rooms[j], 26, 3);
+  link(0,1); link(1,2); link(1,3); link(2,4); link(3,5); link(2,6); link(3,6);
+  link(4,6); link(5,6); link(4,7); link(5,7); link(6,7);
+
+  // 城墙垛 / 黑曜石柱
+  for (const [px, py] of [[12,50],[18,50],[70,50],[76,50],[12,24],[18,24],[70,24],[76,24],
+                          [33,34],[55,34],[33,40],[55,40],[36,12],[52,12]]){
+    if (!m.blocked[py * m.w + px]) setT(m, px, py, 27);
+  }
+  rectT(m, 40, 10, 47, 22, 13);
+  m.deco.push({ t:'altar', x:44, y:10 });
+  m.deco.push({ t:'brazier', x:34, y:11 });
+  m.deco.push({ t:'brazier', x:54, y:11 });
+  m.deco.push({ t:'brazier', x:34, y:34 });
+  m.deco.push({ t:'brazier', x:54, y:34 });
+  m.deco.push({ t:'bones', x:14, y:54 });
+  m.deco.push({ t:'bones', x:74, y:54 });
+  m.deco.push({ t:'bones', x:14, y:28 });
+  m.deco.push({ t:'bones', x:74, y:28 });
+
+  m.portals.push({ x:44, y:69, to:'fengmo',   tx:44, ty:5, label:'封魔谷' });
+  m.portals.push({ x:52, y:9,  to:'huanjing', tx:42, ty:69, label:'幻境回廊', req:'molong', reqName:'魔龙教主' });
+
+  spawnMonsters(m, 'mlGuard',   16, 8, 24, 80, 62, 0.10);
+  spawnMonsters(m, 'mlPriest',   8, 8, 10, 80, 60, 0.08);
+  spawnMonsters(m, 'mlGeneral', 10, 8, 10, 80, 60, 0.12);
+  m.ents.push(makeMonster('dragonLord', 44, 15));
+  spawnMonsters(m, 'mlGeneral', 3, 34, 10, 54, 22, 0.2);
+
+  return m;
+}
+
+/* ---------- 幻境回廊 ---------- */
+function buildHuanjing(){
+  const w = 84, h = 76;
+  const m = blankMap(w, h, 29);
+  m.id = 'huanjing'; m.name = '幻境回廊'; m.minLv = 60;
+
+  const P = [];
+  for (const y of [12, 38, 64]) for (const x of [14, 42, 70]) P.push({ x, y });
+
+  for (const p of P) carveBlob(m, p.x, p.y, 9, 6, 28);
+  // 横向桥
+  for (const y of [12, 38, 64]){
+    for (let x = 14; x <= 70; x++)
+      for (let dy = -1; dy <= 1; dy++) setT(m, x, y + dy, 28);
+  }
+  // 纵向桥
+  for (const x of [14, 42, 70]){
+    for (let y = 12; y <= 64; y++)
+      for (let dx = -1; dx <= 1; dx++) setT(m, x + dx, y, 28);
+  }
+  // 中央平台加宽
+  carveBlob(m, 42, 38, 11, 8, 28);
+
+  // 平台边缘灯
+  for (const p of P){
+    m.deco.push({ t:'brazier', x:p.x - 6, y:p.y - 4 });
+    m.deco.push({ t:'brazier', x:p.x + 6, y:p.y - 4 });
+  }
+  m.deco.push({ t:'altar', x:42, y:38 });
+  m.deco.push({ t:'bones', x:14, y:12 });
+  m.deco.push({ t:'bones', x:70, y:64 });
+
+  m.portals.push({ x:42, y:69, to:'molong', tx:44, ty:66, label:'魔龙城' });
+
+  spawnMonsters(m, 'phShadow', 16, 8, 8, 76, 68, 0.12);
+  spawnMonsters(m, 'phMage',    8, 8, 8, 76, 68, 0.08);
+  spawnMonsters(m, 'phDemon',   8, 8, 8, 76, 68, 0.12);
+  m.ents.push(makeMonster('phantomLord', 42, 40));
+  spawnMonsters(m, 'phDemon', 3, 32, 30, 52, 46, 0.2);
+
+  return m;
+}
+
+/* ---------- 藏宝阁 ---------- */
+function buildTreasure(){
+  const w = 54, h = 46;
+  const m = blankMap(w, h, 21);
+  m.id = 'treasure'; m.name = '藏宝阁'; m.minLv = 46;
+
+  const rooms = [];
+  for (const y of [6, 19, 32]) for (const x of [6, 21, 36]) rooms.push({ x, y, w:12, h:9 });
+  rooms.forEach(r => carveRoom(m, r, 21));   // 先铺地板 21 再改 20
+  rooms.forEach(r => carveRoom(m, r, 20));
+  for (let i = 0; i < 9; i++){
+    const c = i % 3, r = Math.floor(i / 3);
+    if (c < 2) carveLink(m, rooms[i], rooms[i + 1], 20, 3);
+    if (r < 2) carveLink(m, rooms[i], rooms[i + 3], 20, 3);
+  }
+  for (const [px, py] of [[9,7],[18,7],[24,7],[33,7],[39,7],[48,7],
+                          [9,33],[18,33],[24,33],[33,33],[39,33],[48,33]]){
+    if (!m.blocked[py * m.w + px]) setT(m, px, py, 21);
+  }
+  m.deco.push({ t:'altar', x:27, y:23 });
+  m.deco.push({ t:'brazier', x:9, y:10 });
+  m.deco.push({ t:'brazier', x:45, y:10 });
+  m.deco.push({ t:'bones', x:12, y:26 });
+  m.deco.push({ t:'bones', x:42, y:26 });
+
+  m.portals.push({ x:27, y:39, to:'niumo', tx:40, ty:58, label:'牛魔寺庙' });
+
+  spawnMonsters(m, 'tgGuard', 16, 6, 6, 48, 40, 0.35);
+  m.ents.push(makeMonster('tgBoss', 27, 27));
+
+  return m;
+}
+
 const MAP_BUILDERS = {
   village: buildVillage, field: buildField, dungeon: buildDungeon,
-  woma: buildWoma, centipede: buildCentipede, tomb: buildTomb, canyon: buildCanyon
+  woma: buildWoma, centipede: buildCentipede, tomb: buildTomb, canyon: buildCanyon,
+  niumo: buildNiumo, pigcave: buildPigcave, fengmo: buildFengmo,
+  molong: buildMolong, huanjing: buildHuanjing, treasure: buildTreasure
+};
+
+/* 地图解锁条件：需要先击败指定 BOSS（对应 MONS 的 loot 键） */
+const MAP_REQ = {
+  niumo:   { key:'moon',     name:'赤月恶魔' },
+  pigcave: { key:'niumo',    name:'牛魔王' },
+  fengmo:  { key:'pig',      name:'猪王' },
+  molong:  { key:'fengmo',   name:'封魔谷主' },
+  huanjing:{ key:'molong',   name:'魔龙教主' },
+  treasure:{ key:'niumo',    name:'牛魔王' }
 };
 
 /* ---------------------------------------------------------
@@ -1247,7 +1882,8 @@ function eqSum(p, k){
 }
 function nextExp(lv){
   const base = 52 * Math.pow(lv, 1.32);
-  const growth = lv > 24 ? Math.pow(1.07, lv - 24) : 1;
+  // 45 级后放缓指数，避免后半段变成纯数值墙
+  const growth = lv > 44 ? Math.pow(1.07, 20) * Math.pow(1.05, lv - 44) : (lv > 24 ? Math.pow(1.07, lv - 24) : 1);
   // 等级越高，升级所需经验相对怪物经验越陡，避免几分钟打满级
   return Math.floor(base * growth * (4.5 + lv * 0.09));
 }
@@ -1304,6 +1940,106 @@ function itemFullName(it){
   return QNAME[it.q] ? QNAME[it.q] + it.name : it.name;
 }
 
+/* ---- 堆叠：相同物品合并占一格 ---- */
+const STACK_MAX_POTION = 999, STACK_MAX_GEAR = 99;
+function itemCount(it){ return it ? Math.max(1, it.count | 0) : 0; }
+function stackMax(it){ return it.slot === 'potion' ? STACK_MAX_POTION : STACK_MAX_GEAR; }
+function stackKey(it){
+  if (!it) return '';
+  if (it.slot === 'potion') return 'p|' + (it.key || it.name);
+  return ['g', it.slot, it.name, it.lv, it.q || 0, it.set || '',
+    it.atk || 0, it.def || 0, it.hp || 0, it.mp || 0, it.mag || 0, it.crit || 0, it.ls || 0].join('|');
+}
+function invTotal(){
+  const p = G.player;
+  if (!p) return 0;
+  let n = 0;
+  for (const it of p.inv) n += itemCount(it);
+  return n;
+}
+/* 放入背包：先并入同类堆叠，剩余再占新格；返回 false 表示空间不足（不会半途改数据） */
+function addItem(it, n){
+  n = n || 1;
+  const p = G.player;
+  if (!p || !it || n <= 0) return false;
+  const k = stackKey(it), cap = stackMax(it);
+  for (let i = 0; i < p.inv.length && n > 0; i++){
+    const g = p.inv[i];
+    if (!g || stackKey(g) !== k) continue;
+    const cur = itemCount(g);
+    if (cur >= cap) continue;
+    const take = Math.min(cap - cur, n);
+    g.count = cur + take;
+    n -= take;
+  }
+  while (n > 0){
+    if (p.inv.length >= INV_CAP) return false;
+    const take = Math.min(cap, n);
+    const one = Object.assign({}, it);
+    one.count = take;
+    p.inv.push(one);
+    n -= take;
+  }
+  return true;
+}
+/* 背包格已满时，判断该物品能否并入现有堆叠 */
+function canStackInto(it){
+  const p = G.player;
+  if (!p || !it) return false;
+  const k = stackKey(it), cap = stackMax(it);
+  for (const g of p.inv){
+    if (g && stackKey(g) === k && itemCount(g) < cap) return true;
+  }
+  return false;
+}
+/* 从背包取走 1 件（叠放则数量 -1），返回被取的对象 */function takeOne(i){
+  const p = G.player, it = p.inv[i];
+  if (!it) return null;
+  const c = itemCount(it);
+  if (c > 1){ it.count = c - 1; }
+  else p.inv.splice(i, 1);
+  return it;
+}
+/* 把散落的同类物品合并成堆（整理时调用） */
+function mergeStacks(){
+  const p = G.player;
+  const out = [], slotOf = {};
+  for (const it of p.inv){
+    if (!it) continue;
+    const k = stackKey(it), cap = stackMax(it);
+    const g = slotOf[k];
+    if (!g){ out.push(it); slotOf[k] = it; continue; }
+    const cur = itemCount(g), add = itemCount(it), take = Math.min(cap - cur, add);
+    g.count = cur + take;
+    if (add > take){ it.count = add - take; out.push(it); slotOf[k] = it; }
+  }
+  p.inv = out;
+}
+
+/* ---- 装备评分：用于和身上同部位对比 ---- */
+const SCORE_W = {
+  warrior: { atk:2.2, mag:0.2, def:1.5, hp:0.35, mp:0.10, crit:7, ls:6 },
+  mage:    { atk:0.5, mag:2.2, def:1.2, hp:0.28, mp:0.30, crit:6, ls:4 },
+  taoist:  { atk:1.0, mag:1.9, def:1.3, hp:0.35, mp:0.28, crit:6, ls:5 }
+};
+function itemScore(it, cls){
+  if (!it || it.slot === 'potion') return 0;
+  const w = SCORE_W[cls || (G.player && G.player.cls) || 'warrior'] || SCORE_W.warrior;
+  let s = 0;
+  for (const k in w) s += (it[k] || 0) * w[k];
+  return Math.round(s);
+}
+/* 1=比身上好，-1=比身上差，0=持平或非装备 */
+function cmpEquipped(it){
+  if (!it || it.slot === 'potion' || !G.player) return 0;
+  const cur = G.player.equip[it.slot];
+  if (!cur) return 1;
+  const a = itemScore(it), b = itemScore(cur);
+  if (a > b) return 1;
+  if (a < b) return -1;
+  return 0;
+}
+
 /* ---------------------------------------------------------
    8. 日志 / 提示 / 飘字
    --------------------------------------------------------- */
@@ -1356,6 +2092,11 @@ function enterMap(id, tx, ty, silent){
   }
   p.x = px * TS + TS / 2;
   p.y = py * TS + TS / 2;
+  // 宠物随主人一起过图
+  if (G.pet && G.pet.type){
+    G.pet.x = p.x - 26; G.pet.y = p.y + 16;
+    G.pet.inited = true; G.pet.pickCd = 0.6; G.pet.blinkT = 0;
+  }
   p.path = null; p.pathIdx = 0; p.pathT = 0;
   p.moveTarget = null;
   p.target = null;
@@ -1413,9 +2154,9 @@ function killMonster(m){
   m.dead = true;
   m.respawn = m.respawnBase || (m.boss ? 90 : 8 + Math.random() * 5);
   const p = G.player;
-  // 经验
+  // 经验（满级后不再累积，避免经验条一直涨却没有意义）
   const gain = m.exp;
-  p.exp += gain;
+  if (p.lv < LV_CAP) p.exp += gain;
   floatText(m.x, m.y - m.size - 30, '+' + gain + ' EXP', '#a8e88a');
   while (p.exp >= nextExp(p.lv) && p.lv < LV_CAP){
     p.exp -= nextExp(p.lv);
@@ -1429,6 +2170,14 @@ function killMonster(m){
       G.fx.parts.push({ x:p.x, y:p.y - 10, vx:Math.cos(a)*rnd(180,60), vy:Math.sin(a)*rnd(180,60)-60, life:.9, max:.9, color:'#ffe066', size:rnd(4,2) });
     }
     checkSkillUnlock();
+  }
+  if (p.lv >= LV_CAP){
+    p.exp = 0;
+    if (!G.maxLvTip){
+      G.maxLvTip = true;
+      log('★ 已达到最高等级 Lv.' + LV_CAP + '，可以专心刷套装、冲 BOSS 与宠物培养了', '#ffd97a');
+      tip('已达最高等级 Lv.' + LV_CAP);
+    }
   }
   // 金币
   const gd = (MONS[m.type] && MONS[m.type].gold) || [1, 10];
@@ -1463,6 +2212,27 @@ function killMonster(m){
     log('★★★ ' + m.name + ' 被击败了！', '#ffd166');
     tip(m.name + ' 已伏诛　→ 回城休整，或原地再战');
     floatText(p.x, p.y - 74, 'BOSS 击杀', '#ffd166', true);
+    // 记录进度并解锁后续地图
+    if (m.loot){
+      const first = !G.bossKills[m.loot];
+      G.bossKills[m.loot] = (G.bossKills[m.loot] || 0) + 1;
+      if (first){
+        const unlocked = [];
+        for (const id in MAP_REQ) if (MAP_REQ[id].key === m.loot) unlocked.push(getMap(id).name);
+        if (unlocked.length){
+          log('★ 解锁新区域：' + unlocked.join('、'), '#7fe08a');
+          tip('新区域开启：' + unlocked.join('、') + '（按 T 传送）');
+        }
+        if (m.loot === 'huanjing'){
+          log('☆☆☆ 你击败了幻境魔王，玛法大陆主线全部通关！', '#ffd166');
+          tip('主线通关：幻境魔王 已伏诛');
+          for (let i = 0; i < 60; i++){
+            const a = Math.random() * Math.PI * 2;
+            G.fx.parts.push({ x:p.x, y:p.y - 10, vx:Math.cos(a)*rnd(320,90), vy:Math.sin(a)*rnd(320,90)-90, life:1.4, max:1.4, color:i%2?'#ffe066':'#ff7ae0', size:rnd(6,2) });
+          }
+        }
+      }
+    }
     for (let i = 0; i < 44; i++){
       const a = Math.random() * Math.PI * 2;
       G.fx.parts.push({ x:m.x, y:m.y - m.size, vx:Math.cos(a)*rnd(260,80), vy:Math.sin(a)*rnd(260,80)-70, life:1.1, max:1.1, color: i % 2 ? '#ffd166' : '#ff7a3a', size:rnd(5,2) });
@@ -1473,10 +2243,16 @@ function killMonster(m){
 }
 
 /* BOSS 技能：召唤援军 / 震地 / 八方弹幕 */
-function bossSkill(e, tgt){
-  const sk = e.skill;
+function bossSkill(e, tgt, forceSk){
+  const sk = forceSk || e.skill;
   if (!sk) return;
   const p = G.player;
+  if (sk.type === 'cycle'){
+    const list = sk.list || [];
+    if (!list.length) return;
+    bossSkill(e, tgt, list[ri(0, list.length - 1)]);
+    return;
+  }
   if (sk.type === 'summon'){
     let cnt = 0;
     for (const o of G.map.ents) if (o.kind === 'monster' && !o.dead) cnt++;
@@ -1494,6 +2270,49 @@ function bossSkill(e, tgt){
     G.fx.rings.push({ x:e.x, y:e.y, r:20, maxR:130, life:0.6, max:0.6, color:'#b47ae0' });
     floatText(e.x, e.y - e.size - 24, '召唤援军', '#c8a8ff', true);
     SFX.spell();
+    return;
+  }
+  if (sk.type === 'charge'){
+    // 蓄力冲锋：沿直线扑向玩家，路径上造成一次伤害
+    const ang = Math.atan2(p.y - e.y, p.x - e.x);
+    const dist = sk.dist || 320;
+    G.fx.beams.push({ x:e.x, y:e.y - e.size * 0.4, ang, len:dist, w:e.size * 0.75, life:0.34, max:0.34, color:'#ff8a4a' });
+    let cx = e.x, cy = e.y, hit = false;
+    const steps = 14;
+    for (let i = 0; i < steps; i++){
+      const nx = cx + Math.cos(ang) * dist / steps, ny = cy + Math.sin(ang) * dist / steps;
+      if (isBlockedAt(G.map, nx, ny, e.size * 0.4)) break;
+      cx = nx; cy = ny;
+      if (!hit && !p.dead && Math.hypot(p.x - cx, p.y - cy) < e.size * 0.8 + 22){
+        damagePlayer(e.atk * (sk.mult || 2), e.x, e.y);
+        hit = true;
+      }
+      if (i % 3 === 0){
+        G.fx.parts.push({ x:cx, y:cy - 6, vx:rnd(50,-50), vy:rnd(10,-50), life:.5, max:.5, color:'#ff9a5a', size:rnd(5,2) });
+      }
+    }
+    if (!hit){
+      e.x = cx; e.y = cy;
+      e.dir = ang;
+    }
+    floatText(e.x, e.y - e.size - 24, '冲撞', '#ff9a6a', true);
+    SFX.hit();
+    return;
+  }
+  if (sk.type === 'beam'){
+    // 直线魔光
+    const ang = Math.atan2(p.y - e.y, p.x - e.x);
+    const len = sk.len || 500, wid = sk.width || 44;
+    G.fx.beams.push({ x:e.x, y:e.y - e.size * 0.55, ang, len, w:wid, life:0.5, max:0.5, color:'#c060ff' });
+    const px = p.x - e.x, py = (p.y - 8) - (e.y - e.size * 0.55);
+    const dx = Math.cos(ang), dy = Math.sin(ang);
+    const along = px * dx + py * dy;
+    const perp = Math.abs(px * dy - py * dx);
+    if (!p.dead && along > 0 && along < len && perp < wid / 2 + 14){
+      damagePlayer(e.atk * (sk.mult || 2), e.x, e.y);
+    }
+    floatText(e.x, e.y - e.size - 24, '魔光', '#d8a0ff', true);
+    SFX.fire();
     return;
   }
   if (sk.type === 'slam' || sk.type === 'scythe'){
@@ -1793,14 +2612,17 @@ window.addEventListener('keydown', e => {
   const k = e.key.toLowerCase();
   G.keys[k] = true;
   if (!G.running) return;
+  if (e.repeat) return;   // 长按不重复施法 / 喝药
   if (k === 'escape'){
-    ['invPanel','shopPanel','charPanel'].forEach(id => document.getElementById(id).classList.add('hide'));
+    ['invPanel','shopPanel','charPanel','accPanel'].forEach(id => document.getElementById(id).classList.add('hide'));
+    closeQsPanel();
     return;
   }
   if (k === 'i'){ togglePanel('invPanel'); e.preventDefault(); }
   if (k === 'c'){ togglePanel('charPanel'); e.preventDefault(); }
   if (k === 'r'){ goHome(); }
   if (k === 'g'){ toggleAuto(); e.preventDefault(); }
+  if (k === 'p'){ petToggle(); e.preventDefault(); }
   if (k === 't'){ showTeleport(); e.preventDefault(); }
   // 任何手动操作都退出挂机
   if (G.auto.on && ['w','a','s','d','arrowup','arrowdown','arrowleft','arrowright',' ','q'].includes(k)){
@@ -1809,8 +2631,9 @@ window.addEventListener('keydown', e => {
   if (k === ' '){ e.preventDefault(); basicAttack(); }
   if (['1','2','3','4'].includes(k)) castSkill(parseInt(k) - 1);
   if (k === 'e'){ castSkill(4); e.preventDefault(); }
-  if (k === '5') quickPotion('hp');
-  if (k === '6') quickPotion('mp');
+  if (k === '5') useQuick(0);
+  if (k === '6') useQuick(1);
+  if (k === '7') useQuick(2);
   if (k === 'q'){ const m = nearestMonster(G.player.x, G.player.y, 400); if (m){ G.player.target = m; G.player.chase = true; } }
 });
 window.addEventListener('keyup', e => { G.keys[e.key.toLowerCase()] = false; });
@@ -1853,6 +2676,7 @@ function update(dt){
     if (G.auto.on) updateAuto(dt);
     updatePlayer(dt);
   }
+  updateCompanion(dt);
   updateEnts(dt);
   updateProjectiles(dt);
   updateDrops(dt);
@@ -2032,6 +2856,11 @@ function updatePlayer(dt){
     for (const pt of G.map.portals){
       const px = pt.x * TS + TS / 2, py = pt.y * TS + TS / 2;
       if (Math.hypot(px - p.x, py - p.y) < 26){
+        if (pt.req && !G.bossKills[pt.req]){
+          G.portalCd = 1.4;
+          tip('入口被封印：需先击败 ' + (pt.reqName || '守卫 BOSS'));
+          break;
+        }
         enterMap(pt.to, pt.tx, pt.ty);
         break;
       }
@@ -2061,7 +2890,8 @@ function nearestDropForBot(maxD){
   let best = null, bd = maxD * maxD;
   for (const d of G.map.drops){
     if (d.pickCd && G.time < d.pickCd) continue;
-    if (full && d.item && !d.gold) continue;   // 背包满就不捡装备了
+    // 背包格满时，只捡还能并入现有堆叠的物品
+    if (full && d.item && !d.gold && !canStackInto(d.item)) continue;
     const dd = (d.x - p.x) ** 2 + (d.y - p.y) ** 2;
     if (dd < bd){ bd = dd; best = d; }
   }
@@ -2091,7 +2921,7 @@ function toggleAuto(force, msg){
   if (!p) return;
   const on = (force === undefined) ? !G.auto.on : !!force;
   G.auto.on = on;
-  G.auto.stuckT = 0; G.auto.potionCd = 0; G.auto.bagWarnT = 0;
+  G.auto.stuckT = 0; G.auto.potionCd = 0; G.auto.mpCd = 0; G.auto.bagWarnT = 0;
   G.auto.lx = p.x; G.auto.ly = p.y;
   p.moveTarget = null; p.path = null; p.pathIdx = 0;
   if (!on) p.target = null;
@@ -2115,11 +2945,15 @@ function updateAuto(dt){
   if (!p || p.dead) return;
   const hpR = p.hp / maxHp(p), mpR = p.mp / maxMp(p);
 
-  // ---- 1. 自动喝药 ----
-  A.potionCd -= dt;
-  if (A.potionCd <= 0){
-    if (hpR < 0.70 && hasPotion('hp')){ quickPotion('hp'); A.potionCd = 0.6; }
-    else if (p.cls !== 'warrior' && mpR < 0.45 && hasPotion('mp')){ quickPotion('mp'); A.potionCd = 0.6; }
+  // ---- 1. 自动喝药（红 / 蓝各自独立冷却，互不抢占） ----
+  A.potionCd -= dt; A.mpCd -= dt;
+  if (A.potionCd <= 0 && hpR < 0.70 && hasPotion('hp')){
+    quickPotion('hp'); A.potionCd = 0.6;
+  }
+  // 战士蓝少、技能耗蓝低，阈值压低一点，避免在蓝几乎满时浪费药
+  const mpLine = p.cls === 'warrior' ? 0.32 : 0.45;
+  if (A.mpCd <= 0 && mpR < mpLine && hasPotion('mp')){
+    quickPotion('mp'); A.mpCd = p.cls === 'warrior' ? 0.9 : 0.55;
   }
   // 断药且濒死：自动回城并停止挂机，别白送经验
   if (hpR < 0.22 && !hasPotion('hp')){
@@ -2187,18 +3021,145 @@ function updateAuto(dt){
   }
 }
 
-function pickupDrop(d, i){
+/* ---------------------------------------------------------
+   13.6 宠物（跟随 + 自动拾取）
+   --------------------------------------------------------- */
+function resetPet(){
+  G.pet = { type:null, lv:1, on:true, x:0, y:0, inited:false, pickCd:0, animT:0, blinkT:0, pickFlash:0, arm:null, armT:0 };
+}
+function petDef(){ return (G.pet && G.pet.type) ? PETS[G.pet.type] : null; }
+function petStats(){
+  const d = petDef();
+  if (!d) return null;
+  const lv = clamp(G.pet.lv | 0, 1, PET_MAX_LV);
+  return {
+    radius: Math.round(d.radius * (1 + (lv - 1) * 0.13)),
+    speed: d.speed * (1 + (lv - 1) * 0.07),
+    cd: Math.max(0.12, d.cd * Math.pow(0.88, lv - 1))
+  };
+}
+function petUpCost(){
+  const d = petDef();
+  if (!d) return 0;
+  return Math.max(100, Math.round(d.price * 0.3 * G.pet.lv / 100) * 100);
+}
+function updatePetUI(){
+  const el = document.getElementById('petTag');
+  if (!el) return;
+  const d = petDef();
+  if (!d){ el.classList.add('hide'); return; }
+  el.classList.remove('hide');
+  el.classList.toggle('off', !G.pet.on);
+  const txt = document.getElementById('petTagTxt');
+  if (txt) txt.textContent = d.name + ' Lv.' + G.pet.lv + (G.pet.on ? ' · 自动拾取' : ' · 休息中');
+}
+function petToggle(){
+  const pet = G.pet, d = petDef();
+  if (!d){ tip('还没有宠物　去比奇城找「宠物商人」'); return; }
+  pet.on = !pet.on;
+  if (pet.on){
+    pet.x = G.player.x - 26; pet.y = G.player.y + 16;
+    pet.inited = true; pet.pickCd = 0.4; pet.blinkT = 0;
+    log(d.name + ' 出战，开始自动拾取', '#ffd97a');
+  } else {
+    log(d.name + ' 已召回休息', '#8d7a58');
+  }
+  tip(d.name + (pet.on ? ' 出战' : ' 休息'));
+  updatePetUI(); SFX.pick();
+  if (!$('shopPanel').classList.contains('hide') && $('shopTitle').textContent.indexOf('宠物商店') === 0) showPetShop();
+  saveGame(true);
+}
+function petBlink(){
+  const pet = G.pet, p = G.player;
+  for (let i = 0; i < 8; i++){
+    G.fx.parts.push({ x:pet.x, y:pet.y - 8, vx:rnd(70,-70), vy:rnd(-20,-70), life:.45, max:.45, color:'#ffe0a0', size:rnd(4,2) });
+  }
+  pet.x = p.x - 24; pet.y = p.y + 14;
+  pet.blinkT = 0;
+}
+function petMoveTo(tx, ty, spd, dt){
+  const pet = G.pet;
+  const ang = Math.atan2(ty - pet.y, tx - pet.x);
+  const step = spd * dt;
+  const nx = pet.x + Math.cos(ang) * step, ny = pet.y + Math.sin(ang) * step;
+  let moved = false;
+  if (!isBlockedAt(G.map, nx, pet.y, 7)){ pet.x = nx; moved = true; }
+  if (!isBlockedAt(G.map, pet.x, ny, 7)){ pet.y = ny; moved = true; }
+  if (moved) pet.blinkT = Math.max(0, pet.blinkT - dt);
+  else {
+    pet.blinkT += dt;
+    if (pet.blinkT > 0.7) petBlink();
+  }
+  return moved;
+}
+function petCollect(d){
+  const i = G.map.drops.indexOf(d);
+  if (i < 0) return false;
+  const pet = G.pet;
+  pet.pickFlash = 0.34;
+  // 地面光点朝宠物汇聚
+  for (let k = 0; k < 7; k++){
+    const a = Math.random() * Math.PI * 2;
+    G.fx.parts.push({
+      x:d.x + rnd(6,-6), y:d.y - 4,
+      vx:Math.cos(a) * rnd(40,8) + (pet.x - d.x) * 1.6,
+      vy:Math.sin(a) * rnd(40,8) + (pet.y - d.y) * 1.6 - 55,
+      life:.42, max:.42, color:'#ffe6a8', size:rnd(4,2)
+    });
+  }
+  G.fx.rings.push({ x:d.x, y:d.y, r:2, maxR:26, life:.28, max:.28, color:'#ffe066' });
+  pickupDrop(d, i, pet);
+  return true;
+}
+function updateCompanion(dt){
+  const pet = G.pet, p = G.player;
+  if (!pet) return;
+  pet.pickFlash = Math.max(0, pet.pickFlash - dt);
+  if (!pet.type || !pet.on || !p || p.dead) return;
+  const st = petStats();
+  pet.animT += dt;
+  if (!pet.inited){ pet.x = p.x - 26; pet.y = p.y + 16; pet.inited = true; }
+  // 拴绳：跑太远（追丢 / 被地形卡住）就直接闪现归队
+  if (Math.hypot(pet.x - p.x, pet.y - p.y) > Math.max(560, st.radius + 260)) petBlink();
+  pet.pickCd = Math.max(0, pet.pickCd - dt);
+
+  // 找范围内可拾取的掉落；背包格满时只挑能并入现有堆叠的
+  let best = null, bd = st.radius * st.radius;
+  const full = p.inv.length >= INV_CAP;
+  for (const d of G.map.drops){
+    if (d.pickCd && G.time < d.pickCd) continue;
+    if (full && d.item && !canStackInto(d.item)) continue;
+    const dd = (d.x - pet.x) ** 2 + (d.y - pet.y) ** 2;
+    if (dd < bd){ bd = dd; best = d; }
+  }
+
+  if (best){
+    if (Math.hypot(best.x - pet.x, best.y - pet.y) < 20){
+      if (pet.pickCd <= 0){ petCollect(best); pet.pickCd = st.cd; }
+    } else {
+      petMoveTo(best.x, best.y, st.speed, dt);
+    }
+  } else {
+    // 没东西可捡就回到主人侧后方
+    const ax = p.x - Math.cos(p.dir || 0) * 34, ay = p.y - Math.sin(p.dir || 0) * 34 + 8;
+    if (Math.hypot(ax - pet.x, ay - pet.y) > 22) petMoveTo(ax, ay, st.speed * 1.15, dt);
+  }
+}
+
+function pickupDrop(d, i, src){
   G.map.drops.splice(i, 1);
   const p = G.player;
+  const fromPet = !!src;
+  const sx = fromPet ? src.x : p.x, sy = fromPet ? src.y : p.y;
   if (d.gold){
     p.gold += d.gold;
-    floatText(p.x + rnd(10,-10), p.y - 40, '+' + d.gold + ' 金币', '#f0c454');
+    floatText(sx + rnd(10,-10), sy - 34, '+' + d.gold + ' 金币', '#f0c454');
     SFX.coin();
     return;
   }
   if (d.item){
-    // 自动回收：挂机时按开关把白色装备直接换成金币，不进背包
-    if (G.autoSellQ0 && G.auto.on && d.item.slot !== 'potion' && (d.item.q || 0) === 0){
+    // 自动回收：挂机 / 宠物拾取时按开关把白色装备直接换成金币，不进背包
+    if (G.autoSellQ0 && (G.auto.on || fromPet) && d.item.slot !== 'potion' && (d.item.q || 0) === 0){
       const gain = rcValue(d.item);
       p.gold += gain;
       const A = G.auto;
@@ -2211,7 +3172,7 @@ function pickupDrop(d, i){
       SFX.coin();
       return;
     }
-    if (p.inv.length >= INV_CAP){
+    if (!addItem(d.item)){
       if (G.time - (G.bagLogT || -99) > 12){
         G.bagLogT = G.time;
         log('背包已满，无法拾取 ' + itemFullName(d.item), '#ff9b7a');
@@ -2220,9 +3181,9 @@ function pickupDrop(d, i){
       G.map.drops.push(d);
       return;
     }
-    p.inv.push(d.item);
-    log('获得 ' + itemFullName(d.item), QCOLOR[d.item.q || 0]);
-    floatText(p.x, p.y - 44, itemFullName(d.item), QCOLOR[d.item.q || 0]);
+    // 宠物叼回的普通物品只飘字，避免刷屏；蓝色以上才进消息栏
+    if (!fromPet || (d.item.q || 0) >= 1) log('获得 ' + itemFullName(d.item), QCOLOR[d.item.q || 0]);
+    floatText(sx, sy - 40, itemFullName(d.item), QCOLOR[d.item.q || 0]);
     SFX.pick();
     if (document.getElementById('invPanel').classList.contains('hide') === false) renderInv();
   }
@@ -2425,6 +3386,7 @@ function updateFx(dt){
     if (r.life <= 0) fx.rings.splice(i,1);
   }
   for (let i = fx.bolts.length - 1; i >= 0; i--){ fx.bolts[i].life -= dt; if (fx.bolts[i].life <= 0) fx.bolts.splice(i,1); }
+  for (let i = fx.beams.length - 1; i >= 0; i--){ fx.beams[i].life -= dt; if (fx.beams[i].life <= 0) fx.beams.splice(i,1); }
   for (let i = fx.texts.length - 1; i >= 0; i--){
     const t = fx.texts[i]; t.life -= dt; t.y += t.vy * dt; t.vy += 60 * dt;
     if (t.life <= 0) fx.texts.splice(i,1);
@@ -2490,7 +3452,22 @@ const TILECOL = {
   16:['#3c3948', '#44404f', '#332f3e'],
   17:['#171520', '#1d1b26', '#121019'],
   18:['#4a242c', '#552a32', '#3e1d24'],
-  19:['#1c0f14', '#231219', '#160b10']
+  19:['#1c0f14', '#231219', '#160b10'],
+  /* 牛魔寺庙 */
+  20:['#452f26', '#4e362c', '#3d2a21'],
+  21:['#20120e', '#261711', '#190d09'],
+  /* 猪洞 */
+  22:['#483828', '#523f2d', '#3d3022'],
+  23:['#1e150f', '#241a12', '#18100a'],
+  /* 封魔谷 */
+  24:['#452738', '#4e2e40', '#3a2030'],
+  25:['#1c1019', '#22151e', '#150c12'],
+  /* 魔龙城 */
+  26:['#232a3c', '#293246', '#1d2434'],
+  27:['#0f131b', '#141922', '#0a0e14'],
+  /* 幻境 */
+  28:['#3a3158', '#443a66', '#312946'],
+  29:['#0c0916', '#100c1c', '#08060f']
 };
 
 /* 地宫地面与墙体交界处的投影，增强空间层次 */
@@ -2560,7 +3537,8 @@ function renderMapCache(m){
             g.fillRect(gx + 3, gy - 4, 2, 2);
           }
         }
-      } else if (v === 3 || v === 8 || v === 9 || v === 13 || v === 14 || v === 16 || v === 18){
+      } else if (v === 3 || v === 8 || v === 9 || v === 13 || v === 14 || v === 16 || v === 18 ||
+                 v === 20 || v === 22 || v === 24 || v === 26 || v === 28){
         if (v === 3){
           // 石板
           const s1 = hash2(x * 3.1, y * 5.7);
@@ -2590,15 +3568,79 @@ function renderMapCache(m){
             g.lineTo(px + 27, py + 10 + h * 6);
             g.stroke();
           }
+        } else if (v === 20){
+          // 牛魔寺庙：暗红石砖 + 图腾刻纹
+          if (h > 0.72){
+            g.strokeStyle = 'rgba(200,140,80,.14)';
+            g.lineWidth = 1.2;
+            g.beginPath();
+            g.arc(px + 16, py + 16, 7, 0.4, 2.2);
+            g.moveTo(px + 16, py + 9); g.lineTo(px + 16, py + 23);
+            g.stroke();
+          }
+        } else if (v === 22){
+          // 猪洞：泥地 + 蹄印碎石
+          if (h > 0.66){
+            g.fillStyle = 'rgba(140,110,70,.14)';
+            g.beginPath(); g.ellipse(px + 9 + h * 12, py + 20 - h * 8, 4, 2.4, h, 0, 7); g.fill();
+            g.beginPath(); g.ellipse(px + 13 + h * 8, py + 24 - h * 6, 3, 1.8, h, 0, 7); g.fill();
+          }
+        } else if (v === 24){
+          // 封魔谷：焦土 + 余烬裂纹
+          if (h > 0.55){
+            g.strokeStyle = 'rgba(235,110,60,' + (0.10 + h * 0.10).toFixed(3) + ')';
+            g.lineWidth = 1.2;
+            g.beginPath();
+            g.moveTo(px + 3, py + 11 + h * 8);
+            g.lineTo(px + 14, py + 15);
+            g.lineTo(px + 22, py + 9 + h * 6);
+            g.lineTo(px + 29, py + 17);
+            g.stroke();
+          }
+        } else if (v === 26){
+          // 魔龙城：黑曜石反光
+          const s2 = hash2(x * 4.3, y * 2.9);
+          g.strokeStyle = 'rgba(120,170,240,.10)';
+          g.lineWidth = 1;
+          g.beginPath();
+          g.moveTo(px + 2, py + 6 + s2 * 6);
+          g.lineTo(px + TS - 2, py + 20 + s2 * 6);
+          g.stroke();
+          if (s2 > 0.8){
+            g.fillStyle = 'rgba(140,200,255,.10)';
+            g.beginPath(); g.ellipse(px + 18, py + 13, 7, 3, 0.4, 0, 7); g.fill();
+          }
+        } else if (v === 28){
+          // 幻境：琉璃裂纹
+          if (h > 0.5){
+            g.strokeStyle = 'rgba(190,150,255,' + (0.08 + h * 0.10).toFixed(3) + ')';
+            g.lineWidth = 1;
+            g.beginPath();
+            g.moveTo(px + 6, py + 4);
+            g.lineTo(px + 13, py + 15 + h * 5);
+            g.lineTo(px + 8, py + 27);
+            g.moveTo(px + 13, py + 15 + h * 5);
+            g.lineTo(px + 26, py + 20);
+            g.stroke();
+          }
+          // 悬空平台边缘发光
+          g.strokeStyle = 'rgba(176,146,255,.55)';
+          g.lineWidth = 3;
+          g.beginPath();
+          if (getT(m, x, y - 1) !== 28) { g.moveTo(px, py + 1.5); g.lineTo(px + TS, py + 1.5); }
+          if (getT(m, x, y + 1) !== 28) { g.moveTo(px, py + TS - 1.5); g.lineTo(px + TS, py + TS - 1.5); }
+          if (getT(m, x - 1, y) !== 28) { g.moveTo(px + 1.5, py); g.lineTo(px + 1.5, py + TS); }
+          if (getT(m, x + 1, y) !== 28) { g.moveTo(px + TS - 1.5, py); g.lineTo(px + TS - 1.5, py + TS); }
+          g.stroke();
         }
         g.strokeStyle = 'rgba(0,0,0,.20)';
         g.lineWidth = 1;
         g.strokeRect(px + .5, py + .5, TS - 1, TS - 1);
         if (h > 0.55){
-          g.fillStyle = v === 9 ? 'rgba(150,130,180,.045)' : 'rgba(255,255,255,.035)';
+          g.fillStyle = (v === 9 || v === 28) ? 'rgba(150,130,220,.045)' : 'rgba(255,255,255,.035)';
           g.fillRect(px + 2, py + 2, TS - 4, 2);
         }
-      } else if (v === 7 || v === 15 || v === 17 || v === 19){
+      } else if (v === 7 || v === 15 || v === 17 || v === 19 || v === 21 || v === 23 || v === 25 || v === 27 || v === 29){
         // 城墙 / 砖墙 / 岩壁
         g.fillStyle = 'rgba(0,0,0,.22)';
         g.fillRect(px, py + TS - 3, TS, 3);
@@ -2938,7 +3980,42 @@ const MSTYLE = {
   darkBug:  { shape:'worm', body:'#2e2a33', eye:'#ff4a4a' },
   centKing: { shape:'worm', body:'#8a6a2a', eye:'#ff5a3a', horn:true, glow:'#ff7a3a' },
   dragon:   { shape:'dragon', body:'#2a6a52', eye:'#ffd166', glow:'#5ae0a0' },
-  moonDemon:{ shape:'demon', body:'#5a1a2a', eye:'#ff3a3a', horn:true, glow:'#ff3a5a' }
+  moonDemon:{ shape:'demon', body:'#5a1a2a', eye:'#ff3a3a', horn:true, glow:'#ff3a5a' },
+
+  /* 牛魔寺庙 */
+  bullWarrior:{shape:'human', body:'#5a2a22', head:'#6d3226', eye:'#ffb347', weapon:'axe', armor:'#7a3a2a', horn:true },
+  bullPriest:{ shape:'human', body:'#3a1f2a', head:'#4a2838', eye:'#ff8a4a', weapon:'staff', glow:'#ff7a3a' },
+  bullGeneral:{shape:'giant', body:'#6b2a20', head:'#7a3226', eye:'#ffd166' },
+  niumoKing: { shape:'giant', body:'#7a2a1a', head:'#8a3822', eye:'#ffd23a' },
+
+  /* 猪洞 */
+  maggot:   { shape:'worm', body:'#8a7a3a', eye:'#e8e07a' },
+  boar:     { shape:'giant', body:'#4a3a2a', head:'#5c4830', eye:'#ff9a4a' },
+  hongDevil:{ shape:'human', body:'#5a1a2a', head:'#6a2233', eye:'#ff4a5a', weapon:'staff', glow:'#ff4a6a', horn:true },
+  pigGuard: { shape:'human', body:'#6a3a2a', head:'#7a4630', eye:'#ffb347', weapon:'axe', armor:'#8a4a34', horn:true },
+  pigKing:  { shape:'giant', body:'#6a2a2a', head:'#7a3630', eye:'#ff5a3a' },
+
+  /* 封魔谷 */
+  fmGuard:  { shape:'human', body:'#3a2a4a', head:'#4a365c', eye:'#c58ff0', weapon:'axe', armor:'#5a3a6a' },
+  fmMage:   { shape:'human', body:'#2a1a3a', head:'#3a2450', eye:'#d8b0ff', weapon:'staff', glow:'#b47aff', horn:true },
+  fmBlade:  { shape:'skeleton', body:'#c8bcd0', eye:'#ff5a4a', cape:'#3a1a3a', horn:true },
+  fengmoLord:{shape:'demon', body:'#3a1030', eye:'#ff4a6a', horn:true, glow:'#c040ff' },
+
+  /* 魔龙城 */
+  mlGuard:  { shape:'giant', body:'#22303a', head:'#2c3e4a', eye:'#6ac8ff' },
+  mlPriest: { shape:'human', body:'#1a2a3a', head:'#24405a', eye:'#8fdcff', weapon:'staff', glow:'#6ac8ff' },
+  mlGeneral:{ shape:'skeleton', body:'#b8c8d8', eye:'#6ac8ff', cape:'#16222e', horn:true },
+  dragonLord:{shape:'dragon', body:'#20304a', eye:'#ffd166', glow:'#6ac8ff' },
+
+  /* 幻境 */
+  phShadow: { shape:'human', body:'#3a2a5a', head:'#4a3670', eye:'#c8a8ff', weapon:'claw' },
+  phMage:   { shape:'human', body:'#2a1a4a', head:'#3a2660', eye:'#e0c8ff', weapon:'staff', glow:'#c8a8ff' },
+  phDemon:  { shape:'demon', body:'#2a1a3a', eye:'#d8b0ff', horn:true, glow:'#a86aff' },
+  phantomLord:{shape:'demon', body:'#2a1040', eye:'#ff7ae0', horn:true, glow:'#c060ff' },
+
+  /* 藏宝阁 */
+  tgGuard:  { shape:'skeleton', body:'#d8c890', eye:'#ffd166', cape:'#4a3a1a' },
+  tgBoss:   { shape:'giant', body:'#5a4a20', head:'#6a5a28', eye:'#ffd166' }
 };
 
 function drawStyledM(e, s, bob, st){
@@ -3451,6 +4528,199 @@ function drawPet(e){
   ctx.fillStyle = e.beast ? '#ffd166' : '#7ef0a0'; ctx.fillRect(x-13, y-38, 26*(e.hp/e.maxHp), 3);
 }
 
+function drawCompanion(){
+  const pet = G.pet, d = PETS[pet.type];
+  if (!pet || !pet.type || !pet.on || !d) return;
+  const x = pet.x - G.cam.x, y = pet.y - G.cam.y;
+  if (x < -100 || y < -100 || x > VW + 100 || y > VH + 100) return;
+  const st = petStats();
+  const bob = Math.sin(pet.animT * 5) * 1.7;
+
+  // 拾取范围（地面流动虚环）
+  ctx.save();
+  ctx.globalAlpha = .085 + (pet.pickFlash > 0 ? .10 : 0);
+  ctx.strokeStyle = d.color;
+  ctx.lineWidth = 1.2;
+  ctx.setLineDash([7, 12]);
+  ctx.lineDashOffset = -G.time * 16;
+  ctx.beginPath(); ctx.ellipse(x, y, st.radius, st.radius * .42, 0, 0, 7); ctx.stroke();
+  ctx.restore();
+
+  drawShadow(x, y, 11, 4.5);
+
+  // 脚下灵光
+  const gl = ctx.createRadialGradient(x, y - 12, 2, x, y - 12, 33);
+  gl.addColorStop(0, withAlpha(d.color, .30));
+  gl.addColorStop(1, withAlpha(d.color, 0));
+  ctx.fillStyle = gl;
+  ctx.beginPath(); ctx.arc(x, y - 12, 33, 0, 7); ctx.fill();
+
+  ctx.save(); ctx.translate(x, y); ctx.lineCap = 'round';
+
+  if (pet.type === 'wolf'){
+    // 苍狼幼崽：灰蓝四足，尾巴翘起
+    ctx.strokeStyle = '#8ea6bd'; ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    ctx.moveTo(-7, -6); ctx.lineTo(-8, 0);
+    ctx.moveTo(6, -6); ctx.lineTo(8, 0);
+    ctx.stroke();
+    ctx.fillStyle = '#8ea6bd'; ctx.lineWidth = 3.5;
+    ctx.beginPath(); ctx.moveTo(-13, -13 + bob); ctx.quadraticCurveTo(-24, -17 + bob, -21, -28 + bob); ctx.stroke();
+    ctx.fillStyle = '#9fb6cc';
+    ctx.beginPath(); ctx.ellipse(-1, -12 + bob, 13, 8, 0, 0, 7); ctx.fill();
+    ctx.strokeStyle = '#7d94ab'; ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(-9, -16 + bob); ctx.lineTo(-5, -19 + bob);
+    ctx.moveTo(-3, -17 + bob); ctx.lineTo(1, -20 + bob);
+    ctx.stroke();
+    ctx.fillStyle = '#b6cbe0';
+    ctx.beginPath(); ctx.arc(10, -18 + bob, 7, 0, 7); ctx.fill();
+    ctx.fillStyle = '#d6e4f2';
+    ctx.beginPath(); ctx.ellipse(14, -15 + bob, 4.6, 3.2, 0, 0, 7); ctx.fill();
+    ctx.fillStyle = '#8ea6bd';
+    ctx.beginPath(); ctx.moveTo(6,-23+bob); ctx.lineTo(8,-31+bob); ctx.lineTo(12,-24+bob); ctx.closePath(); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(13,-24+bob); ctx.lineTo(16,-31+bob); ctx.lineTo(17,-22+bob); ctx.closePath(); ctx.fill();
+    ctx.fillStyle = '#22303c';
+    ctx.beginPath(); ctx.arc(12, -18 + bob, 1.5, 0, 7); ctx.fill();
+    ctx.beginPath(); ctx.arc(18, -14 + bob, 1.4, 0, 7); ctx.fill();
+  } else if (pet.type === 'cat'){
+    // 招财灵猫：金毛、铜铃、翘尾
+    ctx.strokeStyle = '#c89a3c'; ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    ctx.moveTo(-6, -6); ctx.lineTo(-6, 0);
+    ctx.moveTo(6, -6); ctx.lineTo(6, 0);
+    ctx.stroke();
+    ctx.strokeStyle = '#e0b455'; ctx.lineWidth = 3.5;
+    ctx.beginPath(); ctx.moveTo(-12, -14 + bob); ctx.quadraticCurveTo(-24, -20 + bob, -18, -32 + bob); ctx.stroke();
+    ctx.strokeStyle = '#a87c2a'; ctx.lineWidth = 1.4;
+    for (let i = 0; i < 3; i++){
+      const t = .35 + i * .12;
+      ctx.beginPath();
+      ctx.moveTo(-12 - t * 12, -14 - t * 9 + bob);
+      ctx.lineTo(-10 - t * 12, -17 - t * 9 + bob);
+      ctx.stroke();
+    }
+    ctx.fillStyle = '#e8bf62';
+    ctx.beginPath(); ctx.ellipse(-1, -12 + bob, 12, 8, 0, 0, 7); ctx.fill();
+    ctx.fillStyle = '#f0cd7a';
+    ctx.beginPath(); ctx.arc(10, -19 + bob, 7.5, 0, 7); ctx.fill();
+    // 耳朵
+    ctx.fillStyle = '#e0b455';
+    ctx.beginPath(); ctx.moveTo(5,-24+bob); ctx.lineTo(6,-33+bob); ctx.lineTo(12,-25+bob); ctx.closePath(); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(13,-25+bob); ctx.lineTo(17,-32+bob); ctx.lineTo(18,-23+bob); ctx.closePath(); ctx.fill();
+    ctx.fillStyle = '#e89aa8';
+    ctx.beginPath(); ctx.moveTo(7.5,-25+bob); ctx.lineTo(8,-30+bob); ctx.lineTo(11,-26+bob); ctx.closePath(); ctx.fill();
+    // 眼睛
+    ctx.strokeStyle = '#2f4a34'; ctx.lineWidth = 1.6;
+    ctx.beginPath(); ctx.moveTo(11.5,-20+bob); ctx.lineTo(11.5,-17.5+bob); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(15,-19+bob); ctx.lineTo(15,-16.5+bob); ctx.stroke();
+    // 铃铛
+    ctx.fillStyle = '#ffd75e';
+    ctx.beginPath(); ctx.arc(10, -11 + bob, 2.6, 0, 7); ctx.fill();
+    ctx.strokeStyle = '#b8862a'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.arc(10, -10 + bob, 2.6, .2, Math.PI - .2); ctx.stroke();
+    // 胡须
+    ctx.strokeStyle = 'rgba(255,245,215,.65)'; ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(16,-16+bob); ctx.lineTo(22,-18+bob);
+    ctx.moveTo(16,-14+bob); ctx.lineTo(22,-14+bob);
+    ctx.stroke();
+  } else if (pet.type === 'hound'){
+    // 幽冥灵犬：半透明幽蓝，眼与魂火发亮
+    ctx.shadowColor = '#7fd8ff'; ctx.shadowBlur = 13;
+    ctx.strokeStyle = 'rgba(150,225,255,.7)'; ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    ctx.moveTo(-7, -6); ctx.lineTo(-8, 0);
+    ctx.moveTo(6, -6); ctx.lineTo(8, 0);
+    ctx.stroke();
+    ctx.fillStyle = 'rgba(118,200,240,.72)';
+    ctx.beginPath(); ctx.ellipse(-1, -12 + bob, 14, 8, 0, 0, 7); ctx.fill();
+    ctx.strokeStyle = 'rgba(190,245,255,.8)'; ctx.lineWidth = 1.4;
+    ctx.beginPath(); ctx.ellipse(-1, -12 + bob, 14, 8, 0, 0, 7); ctx.stroke();
+    ctx.fillStyle = 'rgba(160,230,255,.85)';
+    ctx.beginPath(); ctx.arc(10, -19 + bob, 7.5, 0, 7); ctx.fill();
+    ctx.strokeStyle = 'rgba(200,250,255,.85)';
+    ctx.beginPath(); ctx.arc(10, -19 + bob, 7.5, 0, 7); ctx.stroke();
+    ctx.fillStyle = 'rgba(110,190,230,.75)';
+    ctx.beginPath(); ctx.moveTo(5,-24+bob); ctx.lineTo(6,-32+bob); ctx.lineTo(12,-25+bob); ctx.closePath(); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(13,-25+bob); ctx.lineTo(17,-31+bob); ctx.lineTo(18,-23+bob); ctx.closePath(); ctx.fill();
+    ctx.fillStyle = '#eaffff';
+    ctx.beginPath(); ctx.arc(12, -20 + bob, 1.8, 0, 7); ctx.fill();
+    ctx.beginPath(); ctx.arc(16, -20 + bob, 1.8, 0, 7); ctx.fill();
+    ctx.shadowBlur = 0;
+    // 魂火
+    ctx.strokeStyle = 'rgba(140,230,255,.75)'; ctx.lineWidth = 1.6;
+    for (let i = 0; i < 3; i++){
+      const t = pet.animT * 3 + i * 2.1;
+      const bx = -10 + i * 8, by = -24 + bob + Math.sin(t) * 2.5;
+      ctx.beginPath();
+      ctx.moveTo(bx, by);
+      ctx.quadraticCurveTo(bx + 3, by - 5, bx + 1, by - 9);
+      ctx.stroke();
+    }
+  } else if (pet.type === 'qilin'){
+    // 踏云麒麟：粉紫瑞兽、金色鹿角、足下祥云
+    ctx.fillStyle = 'rgba(226,236,255,.30)';
+    ctx.beginPath(); ctx.ellipse(-11, -3, 9, 4.5, 0, 0, 7); ctx.fill();
+    ctx.beginPath(); ctx.ellipse(1, -2, 11, 5, 0, 0, 7); ctx.fill();
+    ctx.beginPath(); ctx.ellipse(13, -3, 9, 4.5, 0, 0, 7); ctx.fill();
+    ctx.strokeStyle = '#e07ac0'; ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(-6, -8); ctx.lineTo(-7, -1);
+    ctx.moveTo(6, -8); ctx.lineTo(7, -1);
+    ctx.stroke();
+    ctx.fillStyle = '#e07ac0';
+    ctx.beginPath(); ctx.ellipse(-1, -14 + bob, 13, 8, 0, 0, 7); ctx.fill();
+    // 鳞纹
+    ctx.strokeStyle = 'rgba(255,220,245,.6)'; ctx.lineWidth = 1.2;
+    for (let i = 0; i < 3; i++){
+      ctx.beginPath(); ctx.arc(-6 + i * 5, -14 + bob, 3, .2, Math.PI - .2); ctx.stroke();
+    }
+    ctx.fillStyle = '#f0a0d8';
+    ctx.beginPath(); ctx.arc(10, -21 + bob, 7, 0, 7); ctx.fill();
+    // 鹿角
+    ctx.strokeStyle = '#ffd166'; ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(8,-27+bob); ctx.lineTo(6,-36+bob); ctx.lineTo(3,-39+bob);
+    ctx.moveTo(6,-33+bob); ctx.lineTo(10,-37+bob);
+    ctx.moveTo(12,-28+bob); ctx.lineTo(14,-37+bob); ctx.lineTo(18,-40+bob);
+    ctx.moveTo(14,-34+bob); ctx.lineTo(11,-37+bob);
+    ctx.stroke();
+    ctx.fillStyle = '#fff3a8';
+    ctx.beginPath(); ctx.arc(13, -22 + bob, 1.6, 0, 7); ctx.fill();
+    // 尾羽
+    ctx.strokeStyle = 'rgba(255,180,235,.8)'; ctx.lineWidth = 2.5;
+    ctx.beginPath(); ctx.moveTo(-13,-16+bob); ctx.quadraticCurveTo(-22,-22+bob,-17,-31+bob); ctx.stroke();
+  }
+
+  // 拾取瞬间的星芒
+  if (pet.pickFlash > 0){
+    const a = pet.pickFlash / .34;
+    ctx.globalAlpha = a;
+    ctx.strokeStyle = '#ffe066'; ctx.lineWidth = 2;
+    const r = 10 + (1 - a) * 10;
+    for (let i = 0; i < 4; i++){
+      const ang = Math.PI / 4 + i * Math.PI / 2;
+      ctx.beginPath();
+      ctx.moveTo(Math.cos(ang) * r * .5, -16 + Math.sin(ang) * r * .5);
+      ctx.lineTo(Math.cos(ang) * r, -16 + Math.sin(ang) * r);
+      ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+  }
+  ctx.restore();
+
+  // 名字 + 等级
+  ctx.textAlign = 'center';
+  ctx.font = '10px "Microsoft YaHei",sans-serif';
+  const nm = d.name + ' Lv.' + pet.lv;
+  const tw = ctx.measureText(nm).width + 10;
+  ctx.fillStyle = 'rgba(0,0,0,.5)';
+  ctx.fillRect(x - tw / 2, y - 50, tw, 13);
+  ctx.fillStyle = d.color;
+  ctx.fillText(nm, x, y - 40);
+}
+
 function drawNpc(n){
   const x = n.x * TS + TS/2 - G.cam.x, y = n.y * TS + TS - G.cam.y;
   drawShadow(x, y, 12, 5);
@@ -3615,6 +4885,27 @@ function drawFx(){
     ctx.stroke();
     ctx.restore();
   }
+  // 直线魔光 / 冲锋残影
+  for (const bm of fx.beams){
+    const a = bm.life / bm.max;
+    ctx.save();
+    ctx.translate(bm.x - cx, bm.y - cy);
+    ctx.rotate(bm.ang);
+    const grd = ctx.createLinearGradient(0, 0, bm.len, 0);
+    grd.addColorStop(0, withAlpha(bm.color, a * 0.85));
+    grd.addColorStop(1, withAlpha(bm.color, 0));
+    ctx.fillStyle = grd;
+    ctx.beginPath();
+    ctx.moveTo(0, -bm.w / 2);
+    ctx.lineTo(bm.len, -bm.w / 3);
+    ctx.lineTo(bm.len, bm.w / 3);
+    ctx.lineTo(0, bm.w / 2);
+    ctx.closePath(); ctx.fill();
+    ctx.globalAlpha = a * 0.9;
+    ctx.strokeStyle = bm.color; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(bm.len, 0); ctx.stroke();
+    ctx.restore();
+  }
   // 弹道
   const projs = G.map.projs || [];
   for (const pr of projs){
@@ -3683,6 +4974,7 @@ function render(){
     drawables.push({ y: e.y, f: () => e.kind === 'pet' ? drawPet(e) : drawMonster(e) });
   }
   drawables.push({ y: G.player.y, f: drawPlayer });
+  if (G.pet.type && G.pet.on && !G.player.dead) drawables.push({ y: G.pet.y, f: drawCompanion });
   drawables.sort((a, b) => a.y - b.y);
   for (const d of drawables) d.f();
 
@@ -3723,7 +5015,12 @@ const MMCOL = {
   0:'rgba(52,72,48,.9)', 1:'rgba(44,64,42,.9)', 2:'rgba(84,76,54,.9)', 3:'rgba(78,74,66,.9)',
   4:'rgba(30,60,90,.9)', 5:'rgba(38,60,40,.9)', 6:'rgba(64,60,52,.9)',
   9:'rgba(70,60,75,.9)', 10:'rgba(120,50,26,.95)', 13:'rgba(110,45,58,.9)',
-  14:'rgba(62,54,42,.9)', 16:'rgba(62,58,74,.9)', 18:'rgba(84,40,48,.9)'
+  14:'rgba(62,54,42,.9)', 16:'rgba(62,58,74,.9)', 18:'rgba(84,40,48,.9)',
+  20:'rgba(74,54,44,.9)', 21:'rgba(44,34,28,.92)',
+  22:'rgba(74,62,44,.9)', 23:'rgba(40,32,24,.92)',
+  24:'rgba(72,44,62,.9)', 25:'rgba(38,26,36,.92)',
+  26:'rgba(40,48,66,.92)', 27:'rgba(24,28,38,.94)',
+  28:'rgba(60,52,88,.92)', 29:'rgba(30,26,54,.94)'
 };
 function drawMinimapStatic(){
   const m = G.map;
@@ -3787,13 +5084,18 @@ function syncHUD(){
   $('hpTxt').textContent = Math.max(0, Math.round(p.hp)) + ' / ' + mh;
   $('mpTxt').textContent = Math.round(p.mp) + ' / ' + mm2;
   const ne = nextExp(p.lv);
-  $('exFill').style.width = clamp(p.exp / ne * 100, 0, 100) + '%';
-  $('exTxt').textContent = 'EXP ' + Math.floor(p.exp / ne * 100) + '%';
+  const maxed = p.lv >= LV_CAP;
+  $('exFill').style.width = maxed ? '100%' : clamp(p.exp / ne * 100, 0, 100) + '%';
+  $('exFill').classList.toggle('maxed', maxed);
+  $('exBar').classList.toggle('maxed', maxed);
+  $('exTxt').textContent = maxed ? '满级 Lv.' + LV_CAP : 'EXP ' + Math.floor(p.exp / ne * 100) + '%';
   $('plv').textContent = 'Lv.' + p.lv + ' ' + P().name + '　金币 ' + p.gold;
   $('pname').textContent = p.name;
   $('avatar').textContent = P().glyph;
   $('avatar').style.background = 'linear-gradient(180deg,' + P().color + ',rgba(0,0,0,.6))';
   $('goldTxt').textContent = '金币 ' + p.gold;
+  updatePetUI();
+  if (G.time - (G.quickT || -1) > 0.25){ G.quickT = G.time; updateQuickBar(); }
 }
 function buildSkillBar(){
   const bar = $('skillbar');
@@ -3808,6 +5110,7 @@ function buildSkillBar(){
     d.onclick = () => castSkill(i);
     bar.appendChild(d);
   });
+  buildQuickBar();
 }
 function syncSkillCD(){
   const p = G.player;
@@ -3841,7 +5144,7 @@ function checkSkillUnlock(){
 function togglePanel(id){
   const el = $(id);
   const willShow = el.classList.contains('hide');
-  ['invPanel','shopPanel','charPanel'].forEach(x => $(x).classList.add('hide'));
+  ['invPanel','shopPanel','charPanel','accPanel'].forEach(x => $(x).classList.add('hide'));
   closeRecycle();
   if (willShow){
     el.classList.remove('hide');
@@ -3852,10 +5155,18 @@ function togglePanel(id){
 document.querySelectorAll('[data-close]').forEach(el => {
   el.onclick = () => $(el.dataset.close).classList.add('hide');
 });
+// 点击快捷栏以外的地方收起选药面板
+document.addEventListener('click', e => {
+  const panel = document.getElementById('qsPanel');
+  if (!panel || panel.classList.contains('hide')) return;
+  if (e.target.closest && (e.target.closest('#qsPanel') || e.target.closest('#quickbar'))) return;
+  closeQsPanel();
+});
 $('bInv').onclick = () => togglePanel('invPanel');
 $('bChar').onclick = () => togglePanel('charPanel');
 $('bTp').onclick = () => showTeleport();
 $('bAuto').onclick = () => toggleAuto();
+$('petTag').onclick = () => petToggle();
 $('bHome').onclick = () => goHome();
 $('bSnd').onclick = () => { soundOn = !soundOn; $('bSnd').textContent = soundOn ? '♪' : '✕'; tip(soundOn ? '音效开' : '音效关'); };
 
@@ -3880,7 +5191,7 @@ function renderInv(){
   }
   const cap = document.createElement('div');
   cap.className = 'capinfo';
-  cap.innerHTML = '已用 <b>' + p.inv.length + '</b><br>容量 10 万';
+  cap.innerHTML = '已用 <b>' + p.inv.length + '</b> 格<br>共 <b>' + invTotal() + '</b> 件';
   eqc.appendChild(cap);
 
   G.invPage = clamp(G.invPage | 0, 0, INV_PAGES - 1);
@@ -3894,7 +5205,13 @@ function renderInv(){
     const c = document.createElement('div');
     c.className = 'cell' + (it ? ' q' + (it.q || 0) : '');
     if (it){
-      c.innerHTML = it.icon;
+      let inner = it.icon;
+      const n = itemCount(it);
+      if (n > 1) inner += '<span class="cnt">x' + n + '</span>';
+      const cmp = cmpEquipped(it);
+      if (cmp > 0) inner += '<span class="cmp up" title="比身上的好">▲</span>';
+      else if (cmp < 0) inner += '<span class="cmp dn" title="不如身上的">▼</span>';
+      c.innerHTML = inner;
       c.style.color = QCOLOR[it.q || 0];
       c.onmouseenter = e => showItemTip(it, e);
       c.onmouseleave = hideTip;
@@ -3908,7 +5225,8 @@ function renderInv(){
   }
   grid.appendChild(frag);
 
-  $('pgInfo').textContent = (G.invPage + 1) + ' / ' + INV_PAGES + '　' + p.inv.length + ' 件';
+  $('pgInfo').textContent = (G.invPage + 1) + ' / ' + INV_PAGES + '　' +
+    p.inv.length + ' 格 · ' + invTotal() + ' 件';
   $('goldTxt').textContent = '金币 ' + p.gold;
 }
 
@@ -3922,6 +5240,7 @@ function gotoInvPage(pg){
 /* ---- 背包整理：装备按品质降序，药水统一排到后面 ---- */
 function sortInv(){
   const p = G.player;
+  mergeStacks();
   p.inv.sort((a, b) => {
     const pa = a.slot === 'potion' ? 1 : 0, pb = b.slot === 'potion' ? 1 : 0;
     if (pa !== pb) return pa - pb;
@@ -3932,7 +5251,7 @@ function sortInv(){
   });
   G.invPage = 0;
   renderInv();
-  tip('已按品质整理');
+  tip('已整理，同类物品已合并');
 }
 
 /* ---- 装备回收 ---- */
@@ -3959,7 +5278,8 @@ function renderRecycle(){
   for (const it of p.inv){
     if (!it || it.slot === 'potion') continue;
     const q = clamp(it.q || 0, 0, 3);
-    cnt[q]++; val[q] += rcValue(it);
+    const n = itemCount(it);
+    cnt[q] += n; val[q] += rcValue(it) * n;
   }
   const list = $('rcList');
   list.innerHTML = '';
@@ -3987,21 +5307,22 @@ function doRecycle(){
   const p = G.player;
   const cand = rcItems();
   if (!cand.length){ tip('没有可回收的装备'); return; }
-  const sum = cand.reduce((s, it) => s + rcValue(it), 0);
+  const totalN = cand.reduce((s, it) => s + itemCount(it), 0);
+  const sum = cand.reduce((s, it) => s + rcValue(it) * itemCount(it), 0);
   const now = Date.now();
   if (now > G.rcArmT){
     G.rcArmT = now + 4000;
     const btn = $('rcDo');
     btn.classList.add('arm');
-    btn.textContent = '确认 ' + cand.length + ' 件';
-    tip('再点一次确认回收 ' + cand.length + ' 件，共 ' + sum + ' 金');
+    btn.textContent = '确认 ' + totalN + ' 件';
+    tip('再点一次确认回收 ' + totalN + ' 件，共 ' + sum + ' 金');
     return;
   }
   G.rcArmT = 0;
   const set = new Set(cand);
   p.inv = p.inv.filter(it => !set.has(it));
   p.gold += sum;
-  log('回收 ' + cand.length + ' 件装备，获得 ' + sum + ' 金币', '#e8c96a');
+  log('回收 ' + totalN + ' 件装备，获得 ' + sum + ' 金币', '#e8c96a');
   floatText(p.x, p.y - 46, '+' + sum + ' 金', '#f0c454');
   SFX.coin();
   // 回收后当前页可能超出末尾，钳制到有物品的最后一页
@@ -4033,7 +5354,10 @@ $('rcAuto').onclick = () => { G.autoSellQ0 = !G.autoSellQ0; renderRecycle(); };
 
 function showItemTip(it, e){
   const tipEl = $('tip');
-  let html = '<div class="t" style="color:' + QCOLOR[it.q || 0] + '">' + itemFullName(it) + '</div>';
+  const p = G.player;
+  const n = itemCount(it);
+  let html = '<div class="t" style="color:' + QCOLOR[it.q || 0] + '">' + itemFullName(it) +
+    (n > 1 ? ' <span style="color:#8d7a58;font-size:11px">x' + n + '</span>' : '') + '</div>';
   if (it.slot !== 'potion'){
     html += '<div class="s">' + SLOTNAME[it.slot] + '　需求等级 ' + it.lv + '</div>';
     if (it.atk) html += '<div class="g">攻击 +' + it.atk + '</div>';
@@ -4043,6 +5367,24 @@ function showItemTip(it, e){
     if (it.mp) html += '<div class="g">魔法值 +' + it.mp + '</div>';
     if (it.crit) html += '<div class="g">暴击 +' + it.crit + '%</div>';
     if (it.ls) html += '<div class="g">吸血 +' + it.ls + '%</div>';
+    // 与身上同部位对比
+    {
+      const cur = p.equip[it.slot];
+      const a = itemScore(it), b = cur ? itemScore(cur) : 0;
+      const diff = a - b;
+      if (!cur){
+        html += '<div class="g" style="margin-top:4px">该部位空着 · 评分 ' + a + ' ▲</div>';
+      } else if (diff > 0){
+        html += '<div class="g" style="margin-top:4px">较身上 +' + diff + ' 评分 ▲（' + a + ' vs ' + b + '）</div>';
+        html += '<div class="s">身上：' + itemFullName(cur) + '</div>';
+      } else if (diff < 0){
+        html += '<div class="r" style="margin-top:4px">较身上 ' + diff + ' 评分 ▼（' + a + ' vs ' + b + '）</div>';
+        html += '<div class="s">身上：' + itemFullName(cur) + '</div>';
+      } else {
+        html += '<div class="s" style="margin-top:4px">与身上评分持平（' + a + '）</div>';
+      }
+      if (p.lv < it.lv) html += '<div class="r">等级不足，需要 Lv.' + it.lv + '</div>';
+    }
     if (it.set && SETS[it.set]){
       const st = SETS[it.set], cnt = setCounts(G.player)[it.set] || 0;
       const on = cnt >= st.need;
@@ -4060,7 +5402,8 @@ function showItemTip(it, e){
     if (it.heal) html += '<div class="g">恢复生命 ' + it.heal + '</div>';
     if (it.mana) html += '<div class="g">恢复魔法 ' + it.mana + '</div>';
   }
-  html += '<div class="s" style="margin-top:4px">售价 ' + Math.floor(it.price * 0.4) + ' 金币</div>';
+  html += '<div class="s" style="margin-top:4px">售价 ' + Math.floor(it.price * 0.4) + ' 金币' +
+    (n > 1 ? ' / 件　整叠 ' + (Math.floor(it.price * 0.4) * n) + ' 金' : '') + '</div>';
   tipEl.innerHTML = html;
   tipEl.style.display = 'block';
   const r = tipEl.getBoundingClientRect();
@@ -4084,7 +5427,7 @@ function useItem(i){
       p.mp = Math.min(maxMp(p), p.mp + it.mana);
       floatText(p.x, p.y - 50, '+' + it.mana, '#7fb6ff');
     }
-    p.inv.splice(i, 1);
+    takeOne(i);
     SFX.spell();
     renderInv();
     return;
@@ -4092,9 +5435,11 @@ function useItem(i){
   if (p.lv < it.lv){ tip('等级不足，需要 Lv.' + it.lv); return; }
   const prevSet = setCounts(p);
   const old = p.equip[it.slot];
-  p.equip[it.slot] = it;
-  p.inv.splice(i, 1);
-  if (old) p.inv.push(old);
+  const one = Object.assign({}, it);
+  delete one.count;
+  p.equip[it.slot] = one;
+  takeOne(i);
+  if (old && !addItem(old)) p.inv.push(old);
   p.hp = Math.min(p.hp, maxHp(p));
   const nowSet = setCounts(p);
   for (const k in SETS){
@@ -4126,13 +5471,197 @@ function quickPotion(kind){
   if (idx < 0){ tip(kind === 'hp' ? '没有金创药了' : '没有魔法药了'); return; }
   useItem(idx);
 }
+/* ---------------------------------------------------------
+   14.5 快捷药水栏（5 / 6 / 7）
+   --------------------------------------------------------- */
+const QUICK_DEFAULT = ['*hp', '*mp', '*big'];
+const QUICK_SENT = {
+  '*hp':  { name:'自动金创', icon:'药', kind:'hp',  desc:'按缺失生命自动挑最省的金创药' },
+  '*mp':  { name:'自动魔法', icon:'瓶', kind:'mp',  desc:'按缺失魔法自动挑最省的魔法药' },
+  '*big': { name:'最大治疗', icon:'药', kind:'big', desc:'直接喝背包里恢复量最高的药' }
+};
+function resetQuick(){ G.quick = QUICK_DEFAULT.slice(); }
+function shortPotionName(n){
+  return String(n || '').replace('金创药(小)','金创小').replace('金创药(中)','金创中').replace('金创药(大)','金创大')
+    .replace('魔法药(小)','魔法小').replace('魔法药(中)','魔法中').replace('魔法药(大)','魔法大');
+}
+function countPotionKind(kind){
+  const p = G.player;
+  if (!p) return 0;
+  let n = 0;
+  for (const it of p.inv){
+    if (!it || it.slot !== 'potion') continue;
+    if (kind === 'hp' ? it.heal > 0 : it.mana > 0) n += itemCount(it);
+  }
+  return n;
+}
+function countPotionKey(key){
+  const p = G.player;
+  if (!p) return 0;
+  let n = 0;
+  for (const it of p.inv) if (it && it.slot === 'potion' && it.key === key) n += itemCount(it);
+  return n;
+}
+function bestHealKey(){
+  const p = G.player;
+  if (!p) return null;
+  let best = null, bv = 0;
+  for (const it of p.inv){
+    if (!it || it.slot !== 'potion') continue;
+    const v = it.heal || 0;
+    if (v > bv){ bv = v; best = it.key; }
+  }
+  return best;
+}
+function quickSlotInfo(i){
+  const q = G.quick[i];
+  if (q === '*hp' || q === '*mp'){
+    const s = QUICK_SENT[q];
+    return { icon:s.icon, name:s.name, count:countPotionKind(s.kind), desc:s.desc, empty:false };
+  }
+  if (q === '*big'){
+    const key = bestHealKey();
+    if (!key) return { icon:'药', name:'最大治疗', count:0, desc:QUICK_SENT['*big'].desc, empty:false };
+    const d = POTIONS[key] || {};
+    return { icon:d.icon || '药', name:shortPotionName(d.name), count:countPotionKey(key),
+      desc:'直接喝 ' + (d.name || '') + '（恢复 ' + (d.heal || 0) + ' 生命）', empty:false };
+  }
+  if (!q) return { icon:'＋', name:'点击绑定', count:0, desc:'点击选择要绑定的药水', empty:true };
+  const d = POTIONS[q];
+  if (!d) return { icon:'?', name:'未知', count:0, desc:'药水已失效，点击重新绑定', empty:true };
+  return { icon:d.icon || '丹', name:shortPotionName(d.name), count:countPotionKey(q),
+    desc:d.name + '　恢复 ' + (d.heal || 0) + ' 生命 / ' + (d.mana || 0) + ' 魔法', empty:false };
+}
+function buildQuickBar(){
+  const bar = document.getElementById('quickbar');
+  if (!bar) return;
+  if (!Array.isArray(G.quick)) resetQuick();
+  closeQsPanel();
+  bar.innerHTML = '';
+  for (let i = 0; i < 3; i++){
+    const d = document.createElement('div');
+    d.className = 'qs';
+    d.dataset.idx = i;
+    d.innerHTML = '<span class="k">' + (5 + i) + '</span>' +
+      '<span class="ic"></span><span class="c"></span><span class="nm"></span>';
+    d.onclick = (e) => {
+      e.stopPropagation();
+      if (G.quick[i]) useQuick(i);
+      else toggleQsPanel(i);
+    };
+    d.oncontextmenu = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleQsPanel(i);
+    };
+    bar.appendChild(d);
+  }
+  updateQuickBar();
+}
+function updateQuickBar(){
+  const bar = document.getElementById('quickbar');
+  if (!bar || !G.player) return;
+  const slots = bar.children;
+  for (let i = 0; i < slots.length; i++){
+    const el = slots[i];
+    if (!el) continue;
+    const info = quickSlotInfo(i);
+    el.classList.toggle('empty', !!info.empty);
+    el.classList.toggle('none', info.count <= 0 && !info.empty);
+    el.querySelector('.ic').textContent = info.icon;
+    el.querySelector('.nm').textContent = info.name;
+    el.querySelector('.c').textContent = info.count > 0 ? info.count : '';
+    el.title = (info.desc || '') + '　左键喝 / 右键设置';
+  }
+}
+function toggleQsPanel(i){
+  const panel = document.getElementById('qsPanel');
+  if (!panel) return;
+  if (!panel.classList.contains('hide') && String(panel.dataset.idx) === String(i)){ closeQsPanel(); return; }
+  openQsPanel(i);
+}
+function closeQsPanel(){
+  const panel = document.getElementById('qsPanel');
+  if (!panel) return;
+  panel.classList.add('hide');
+  panel.dataset.idx = '';
+}
+function openQsPanel(i){
+  const panel = document.getElementById('qsPanel');
+  const p = G.player;
+  if (!panel || !p) return;
+  const keys = Object.keys(POTIONS).filter(k => countPotionKey(k) > 0);
+  keys.sort((a, b) => {
+    const A = POTIONS[a], B = POTIONS[b];
+    const ca = A.heal ? 0 : 1, cb = B.heal ? 0 : 1;
+    if (ca !== cb) return ca - cb;
+    return (B.heal || B.mana) - (A.heal || A.mana);
+  });
+  let html = '<div class="qttl">第 ' + (i + 1) + ' 格 · 选择药水（右键格子可换）</div>';
+  html += '<div class="qt" data-v="*hp"><span>自动 · 金创药</span><span>按缺口挑</span></div>';
+  html += '<div class="qt" data-v="*mp"><span>自动 · 魔法药</span><span>按缺口挑</span></div>';
+  html += '<div class="qt" data-v="*big"><span>自动 · 最大治疗</span><span>喝最大瓶</span></div>';
+  if (keys.length){
+    html += '<div class="qttl" style="margin-top:4px">背包中的药水</div>';
+    for (const key of keys){
+      const d = POTIONS[key] || {};
+      html += '<div class="qt" data-v="' + key + '"><span>' + (d.icon || '') + ' ' +
+        shortPotionName(d.name || key) + '</span><span>x' + countPotionKey(key) + '</span></div>';
+    }
+  }
+  html += '<div class="qt" data-v=""><span style="color:#ff9b7a">清空该格</span><span></span></div>';
+  panel.innerHTML = html;
+  panel.dataset.idx = i;
+  panel.classList.remove('hide');
+  panel.querySelectorAll('.qt').forEach(el => {
+    el.onclick = (e) => {
+      e.stopPropagation();
+      const v = el.dataset.v || null;
+      G.quick[i] = v;
+      closeQsPanel();
+      updateQuickBar();
+      syncHUD();
+      tip(v ? '第 ' + (i + 1) + ' 格：' + (QUICK_SENT[v] ? QUICK_SENT[v].name : shortPotionName((POTIONS[v] || {}).name || v))
+        : '第 ' + (i + 1) + ' 格已清空');
+      saveGame(true);
+    };
+  });
+}
+function drinkPotionKey(key){
+  const p = G.player;
+  if (!p || p.dead) return;
+  for (let i = 0; i < p.inv.length; i++){
+    const it = p.inv[i];
+    if (it && it.slot === 'potion' && it.key === key){ useItem(i); return; }
+  }
+  const d = POTIONS[key];
+  tip('没有' + (d ? d.name : '该药水') + '了');
+}
+function useQuick(i){
+  const p = G.player;
+  if (!p || p.dead) return;
+  const q = G.quick[i];
+  if (q === '*hp') quickPotion('hp');
+  else if (q === '*mp') quickPotion('mp');
+  else if (q === '*big'){
+    const key = bestHealKey();
+    if (!key){ tip('背包里没有治疗药水'); return; }
+    drinkPotionKey(key);
+  } else if (!q){
+    tip('第 ' + (i + 1) + ' 格未绑定药水　右键格子可设置');
+    return;
+  } else {
+    drinkPotionKey(q);
+  }
+  updateQuickBar();
+}
+
 function unequip(sl){
   const p = G.player;
   const it = p.equip[sl];
   if (!it) return;
-  if (p.inv.length >= INV_CAP){ tip('背包已满'); return; }
+  if (!addItem(it)){ tip('背包已满'); return; }
   p.equip[sl] = null;
-  p.inv.push(it);
   p.hp = Math.min(p.hp, maxHp(p));
   renderInv(); syncHUD();
 }
@@ -4153,9 +5682,11 @@ function sellItem(i){
   const it = p.inv[i];
   if (!it) return;
   const price = Math.max(1, Math.floor(it.price * 0.4));
+  const left = itemCount(it) - 1;
   p.gold += price;
-  p.inv.splice(i, 1);
-  log('出售 ' + itemFullName(it) + ' 获得 ' + price + ' 金币', '#e8c96a');
+  takeOne(i);
+  log('出售 ' + itemFullName(it) + (left > 0 ? ' ×1（剩 ' + left + '）' : '') +
+    ' 获得 ' + price + ' 金币', '#e8c96a');
   SFX.coin();
   renderInv(); syncHUD();
 }
@@ -4171,7 +5702,7 @@ function renderChar(){
   const rows = [
     ['职业', P().name],
     ['等级', 'Lv.' + p.lv + ' / ' + LV_CAP],
-    ['经验', Math.floor(p.exp) + ' / ' + nextExp(p.lv)],
+    ['经验', p.lv >= LV_CAP ? '已满级' : Math.floor(p.exp) + ' / ' + nextExp(p.lv)],
     ['生命', Math.round(p.hp) + ' / ' + maxHp(p)],
     ['魔法', Math.round(p.mp) + ' / ' + maxMp(p)],
     ['攻击', Math.round(statAtk(p))],
@@ -4180,6 +5711,8 @@ function renderChar(){
     ['暴击', Math.round(statCrit(p) * 100) + '%'],
     ['吸血', Math.round(statLs(p) * 100) + '%'],
     ['套装', setNames.length ? setNames.join(' / ') : '—'],
+    ['宠物', petDef() ? petDef().name + ' Lv.' + G.pet.lv + (G.pet.on ? '（出战）' : '（休息）') : '—'],
+    ['BOSS 进度', bossProgressText()],
     ['金币', p.gold],
     ['当前地图', G.map.name]
   ];
@@ -4193,17 +5726,23 @@ function openNpc(n){
     showTeleport();
     return;
   }
+  if (n.shop === 'pet'){
+    showPetShop();
+    return;
+  }
   curShop = n;
   $('invPanel').classList.add('hide');
   closeRecycle();
   const panel = $('shopPanel');
   panel.classList.remove('hide');
+  panel.classList.remove('wide');
   $('shopTitle').textContent = n.name;
   const list = $('shopList');
+  list.classList.remove('two');
   list.innerHTML = '';
   let goods = [];
   if (n.shop === 'potion'){
-    goods = ['hp1','mp1','hp2','mp2','hp3','mp3'].map(k => ({ kind:'potion', key:k }));
+    goods = ['hp1','hp2','hp3','hp4','mp1','mp2','mp3','mp4'].map(k => ({ kind:'potion', key:k }));
   } else if (n.shop === 'gear'){
     goods = [];
     for (const sl of SLOT_LIST){
@@ -4240,19 +5779,150 @@ function openNpc(n){
 function buyGoods(gd, price, item){
   const p = G.player;
   if (p.gold < price){ tip('金币不足'); return; }
-  if (p.inv.length >= INV_CAP){ tip('背包已满'); return; }
+  const bought = gd.kind === 'potion'
+    ? clonePotion(gd.key)
+    : JSON.parse(JSON.stringify({ ...item, id: uid++ }));
+  if (!addItem(bought)){ tip('背包已满'); return; }
   p.gold -= price;
-  if (gd.kind === 'potion') p.inv.push(clonePotion(gd.key));
-  else p.inv.push(JSON.parse(JSON.stringify({ ...item, id: uid++ })));
   SFX.coin();
   log('购买 ' + (item ? itemFullName(item) : POTIONS[gd.key].name), '#e8c96a');
   syncHUD();
   if (!$('invPanel').classList.contains('hide')) renderInv();
 }
+/* ---------- 宠物商店 ---------- */
+function showPetShop(){
+  const p = G.player;
+  if (!p) return;
+  $('invPanel').classList.add('hide');
+  closeRecycle();
+  const panel = $('shopPanel');
+  panel.classList.remove('hide');
+  panel.classList.remove('wide');
+  $('shopTitle').textContent = '宠物商店 ・ 金币 ' + p.gold;
+  const list = $('shopList');
+  list.classList.remove('two');
+  list.innerHTML = '';
+
+  for (const key of PET_ORDER){
+    const d = PETS[key];
+    const owned = G.pet.type === key;
+    const st = owned ? petStats() : { radius: d.radius, cd: d.cd };
+    const locked = !owned && p.lv < d.needLv;
+    const row = document.createElement('div');
+    row.className = 'sitem' + (locked ? ' locked' : '');
+
+    let act = '';
+    if (!owned){
+      const poor = p.gold < d.price;
+      const armed = G.pet.arm === key && G.time < G.pet.armT;
+      act = '<span class="pbtn' + (locked || poor ? ' no' : (armed ? ' warn' : '')) + '">' +
+        (locked ? '需 Lv.' + d.needLv : armed ? '确认替换' : d.price.toLocaleString() + ' 金') + '</span>';
+    } else {
+      const cost = petUpCost();
+      const maxed = G.pet.lv >= PET_MAX_LV;
+      act = '<span class="pbtn' + (maxed ? ' no' : '') + '" data-act="up">' +
+        (maxed ? '已满级' : '升级 ' + cost.toLocaleString()) + '</span>' +
+        '<span class="pbtn ' + (G.pet.on ? 'on' : 'off') + '" data-act="toggle">' +
+        (G.pet.on ? '休息' : '出战') + '</span>';
+    }
+
+    row.innerHTML =
+      '<div class="lft">' +
+        '<div class="top"><span class="pglyph" style="background:' + d.color + '">' + d.glyph + '</span>' +
+          d.name + (owned ? '<span class="st">Lv.' + G.pet.lv + ' / ' + PET_MAX_LV + '</span>' : '') +
+        '</div>' +
+        '<div class="sub">' + d.desc + '<br>半径 ' + st.radius + ' · 间隔 ' + st.cd.toFixed(2) + 's' +
+          ' · 需 Lv.' + d.needLv + (owned ? ' · 已拥有' : ' · 售价 ' + d.price.toLocaleString()) +
+        '</div>' +
+      '</div>' +
+      '<span class="pact">' + act + '</span>';
+
+    row.onclick = (ev) => {
+      const t = ev.target.closest('[data-act]');
+      if (t){
+        if (t.dataset.act === 'up') upgradePet();
+        else petToggle();
+        return;
+      }
+      if (!owned) buyPet(key);
+    };
+    list.appendChild(row);
+  }
+
+  const foot = document.createElement('div');
+  foot.className = 'sitem';
+  foot.style.cssText = 'cursor:default;background:none;border-color:transparent;padding:8px 2px 0';
+  foot.innerHTML = '<span class="d" style="line-height:16px">' +
+    '宠物会自主跟随并拾取范围内的金币与装备，背包满时只叼回可叠加的物品。' +
+    '按 P 或点击顶部宠物状态可让它出战 / 休息。升级可扩大拾取范围、缩短拾取间隔。' +
+    '</span>';
+  list.appendChild(foot);
+}
+function buyPet(key){
+  const p = G.player, d = PETS[key];
+  if (!p || !d) return;
+  if (G.pet.type === key){ tip('已经拥有 ' + d.name); return; }
+  if (p.lv < d.needLv){ tip('需要 Lv.' + d.needLv + ' 才能驯服 ' + d.name); return; }
+  if (p.gold < d.price){ tip('金币不足　还差 ' + (d.price - p.gold)); return; }
+  // 已有宠物时，替换需要二次确认，避免误点丢掉练好的伙伴
+  if (G.pet.type && G.pet.type !== key && (G.pet.arm !== key || G.time > G.pet.armT)){
+    G.pet.arm = key; G.pet.armT = G.time + 5;
+    showPetShop();
+    tip('再次点击可替换为 ' + d.name + '（旧伙伴会离开）');
+    return;
+  }
+  G.pet.arm = null;
+  const old = petDef();
+  p.gold -= d.price;
+  G.pet.type = key; G.pet.lv = 1; G.pet.on = true;
+  G.pet.x = p.x - 26; G.pet.y = p.y + 16;
+  G.pet.inited = true; G.pet.pickCd = 0.5; G.pet.blinkT = 0;
+  SFX.coin(); SFX.level();
+  log('★ 驯服宠物：' + d.name + '（自动拾取已开启）', '#ffd97a');
+  if (old && old !== d) log('旧伙伴 ' + old.name + ' 已送回宠物店', '#8d7a58');
+  tip(d.name + ' 已加入队伍');
+  syncHUD(); updatePetUI(); showPetShop(); saveGame(true);
+}
+function upgradePet(){
+  const p = G.player, d = petDef();
+  if (!p || !d) return;
+  if (G.pet.lv >= PET_MAX_LV){ tip('宠物已满级'); return; }
+  const cost = petUpCost();
+  if (p.gold < cost){ tip('金币不足　升级需要 ' + cost.toLocaleString() + ' 金'); return; }
+  p.gold -= cost;
+  G.pet.lv++;
+  const st = petStats();
+  SFX.level();
+  log('宠物 ' + d.name + ' 升至 Lv.' + G.pet.lv + '（半径 ' + st.radius + ' / 间隔 ' + st.cd.toFixed(2) + 's）', '#ffd97a');
+  tip('宠物升级 Lv.' + G.pet.lv);
+  syncHUD(); updatePetUI(); showPetShop(); saveGame(true);
+}
+
 function bossAlive(mapId){
   const m = getMap(mapId);
   const b = m.ents.find(e => e.boss);
   return b ? !b.dead : false;
+}
+function mapUnlocked(id){
+  const r = MAP_REQ[id];
+  return !r || !!G.bossKills[r.key];
+}
+/* 主线 BOSS 顺序（用于进度显示） */
+const BOSS_ORDER = [
+  { key:'zuma',      name:'祖玛教主' },
+  { key:'woma',      name:'沃玛教主' },
+  { key:'centipede', name:'蜈蚣王' },
+  { key:'dragon',    name:'触龙神' },
+  { key:'moon',      name:'赤月恶魔' },
+  { key:'niumo',     name:'牛魔王' },
+  { key:'pig',       name:'猪王' },
+  { key:'fengmo',    name:'封魔谷主' },
+  { key:'molong',    name:'魔龙教主' },
+  { key:'huanjing',  name:'幻境魔王' }
+];
+function bossProgressText(){
+  const n = BOSS_ORDER.filter(b => G.bossKills[b.key]).length;
+  return n + ' / ' + BOSS_ORDER.length + (n < BOSS_ORDER.length ? '　下一个：' + BOSS_ORDER[n].name : '　全通');
 }
 
 function showTeleport(){
@@ -4262,10 +5932,13 @@ function showTeleport(){
   closeRecycle();
   const panel = $('shopPanel');
   panel.classList.remove('hide');
+  panel.classList.add('wide');
   $('shopTitle').textContent = '传送 ・ 金币 ' + p.gold;
   const list = $('shopList');
+  list.classList.add('two');
   list.innerHTML = '';
   const dests = [
+    { header:'新手 · 进阶' },
     { name:'比奇城',         sub:'安全区 · 商店 / 传送',   cost:0,   map:'village',   x:31, y:33 },
     { name:'沃玛森林',       sub:'Lv.1-15 练级场',         cost:30,  map:'field',     x:40, y:6  },
     { name:'祖玛寺庙',       sub:'Lv.13+ · 沃玛卫士',      cost:100, map:'dungeon',   x:31, y:5,  needLv:12 },
@@ -4277,13 +5950,38 @@ function showTeleport(){
     { name:'石墓阵',         sub:'Lv.28+ · 僵尸 / 战将',   cost:280, map:'tomb',      x:35, y:47, needLv:28 },
     { name:'触龙神墓室',     sub:'BOSS 房 · 直接开打',     cost:520, map:'tomb',      x:36, y:33, boss:true, bossName:'触龙神', needLv:30 },
     { name:'赤月峡谷',       sub:'Lv.34+ · 赤月魔物',      cost:400, map:'canyon',    x:43, y:66, needLv:34 },
-    { name:'赤月祭坛',       sub:'BOSS 房 · 直接开打',     cost:800, map:'canyon',    x:43, y:16, boss:true, bossName:'赤月恶魔', needLv:36 }
+    { name:'赤月祭坛',       sub:'BOSS 房 · 直接开打',     cost:800, map:'canyon',    x:43, y:16, boss:true, bossName:'赤月恶魔', needLv:36 },
+
+    { header:'高阶 · 牛魔 / 猪洞 / 封魔' },
+    { name:'牛魔寺庙',       sub:'Lv.46+ · 牛魔祭司 / 战将', cost:600,  map:'niumo',   x:40, y:58, needLv:46, gate:'niumo' },
+    { name:'牛魔王殿',       sub:'BOSS 房 · 直接开打',       cost:1400, map:'niumo',   x:40, y:15, boss:true, bossName:'牛魔王', needLv:48, gate:'niumo' },
+    { name:'藏宝阁',         sub:'精英怪密集 · 刷装备',      cost:700,  map:'treasure',x:27, y:38, needLv:46, gate:'treasure' },
+    { name:'猪洞七层',       sub:'Lv.50+ · 野猪 / 虹魔教徒', cost:900,  map:'pigcave', x:10, y:58, needLv:50, gate:'pigcave' },
+    { name:'猪王巢穴',       sub:'BOSS 房 · 直接开打',       cost:2000, map:'pigcave', x:41, y:34, boss:true, bossName:'猪王', needLv:52, gate:'pigcave' },
+    { name:'封魔谷',         sub:'Lv.54+ · 封魔刀客',        cost:1200, map:'fengmo',  x:44, y:68, needLv:54, gate:'fengmo' },
+    { name:'封魔魔殿',       sub:'BOSS 房 · 直接开打',       cost:2600, map:'fengmo',  x:44, y:12, boss:true, bossName:'封魔谷主', needLv:56, gate:'fengmo' },
+
+    { header:'终极 · 魔龙 / 幻境' },
+    { name:'魔龙城',         sub:'Lv.58+ · 魔龙战将',        cost:1600, map:'molong',  x:44, y:68, needLv:58, gate:'molong' },
+    { name:'魔龙王座',       sub:'BOSS 房 · 直接开打',       cost:3600, map:'molong',  x:44, y:17, boss:true, bossName:'魔龙教主', needLv:60, gate:'molong' },
+    { name:'幻境回廊',       sub:'Lv.60 · 终局试炼',         cost:2400, map:'huanjing',x:42, y:69, needLv:60, gate:'huanjing' },
+    { name:'幻境核心',       sub:'最终 BOSS · 幻境魔王',     cost:5000, map:'huanjing',x:42, y:44, boss:true, bossName:'幻境魔王', needLv:60, gate:'huanjing' }
   ];
   dests.forEach(d => {
+    if (d.header){
+      const h = document.createElement('div');
+      h.className = 'shead';
+      h.textContent = d.header;
+      list.appendChild(h);
+      return;
+    }
     const row = document.createElement('div');
-    row.className = 'sitem' + (d.boss ? ' boss' : '');
+    const locked = !!d.gate && !mapUnlocked(d.gate);
+    row.className = 'sitem' + (d.boss ? ' boss' : '') + (locked ? ' locked' : '');
     let extra = '';
-    if (d.boss){
+    if (locked){
+      extra = ' · <span class="lk">需先击败 ' + MAP_REQ[d.gate].name + '</span>';
+    } else if (d.boss){
       extra = bossAlive(d.map)
         ? ' · <span class="alive">' + d.bossName + '存活</span>'
         : ' · <span class="dead">' + d.bossName + '已伏诛</span>';
@@ -4294,8 +5992,9 @@ function showTeleport(){
                       '<span class="top">' + d.name + tag + lock + '</span>' +
                       '<span class="sub">' + d.sub + extra + '</span>' +
                     '</span>' +
-                    '<span class="p">' + (d.cost ? d.cost + ' 金' : '免费') + '</span>';
+                    '<span class="p">' + (locked ? '封印' : (d.cost ? d.cost + ' 金' : '免费')) + '</span>';
     row.onclick = () => {
+      if (locked){ tip('尚未解锁：需要先击败 ' + MAP_REQ[d.gate].name); return; }
       if (d.needLv && p.lv < d.needLv){ tip('需要 Lv.' + d.needLv + ' 才能前往' + d.name); return; }
       if (p.gold < d.cost){ tip('金币不足，还差 ' + (d.cost - p.gold)); return; }
       p.gold -= d.cost;
@@ -4311,28 +6010,90 @@ function showTeleport(){
   });
   const foot = document.createElement('div');
   foot.style.cssText = 'font-size:10px;color:#7d6c4e;margin-top:9px;line-height:1.8';
-  foot.textContent = '提示：BOSS 落地即拉仇恨，且血量低于 45% 会狂暴；建议带满太阳水再来。';
+  foot.textContent = '提示：新区域需先击败前一关 BOSS 才会解封；BOSS 落地即拉仇恨，血量低于 45% 会狂暴。';
   list.appendChild(foot);
 }
 
 /* ---------------------------------------------------------
    18. 存档
    --------------------------------------------------------- */
-const SAVE_KEY = 'chuanqi_save_v2';
+/* ---------------- 本地账号 ---------------- */
+const ACC_KEY = 'chuanqi_accounts_v1';
+const LEGACY_SAVE_KEY = 'chuanqi_save_v2';
+const SAVE_PREFIX = 'chuanqi_save_u_';
+let accounts = null;   // { v, last, remember, users:{ name:{hash,created,last} } }
+let curUser = null;    // 当前登录账号
+
+function loadAccounts(){
+  if (accounts) return accounts;
+  let d = null;
+  try { const raw = localStorage.getItem(ACC_KEY); d = raw ? JSON.parse(raw) : null; } catch(e){}
+  if (!d || typeof d !== 'object' || !d.users) d = { v:1, last:'', remember:false, users:{} };
+  if (!d.users || typeof d.users !== 'object') d.users = {};
+  accounts = d;
+  return accounts;
+}
+function persistAccounts(){
+  try { localStorage.setItem(ACC_KEY, JSON.stringify(accounts)); return true; }
+  catch(e){ return false; }
+}
+/* 本地口令摘要：只避免明文落盘，并非安全加密 */
+function hashPass(user, pass){
+  const s = 'cq$' + user + '#' + pass + '#mir';
+  let h1 = 0x811c9dc5 >>> 0, h2 = 0x1b873593 >>> 0;
+  for (let r = 0; r < 2048; r++){
+    for (let i = 0; i < s.length; i++){
+      const c = (s.charCodeAt(i) + r * 31 + i) >>> 0;
+      h1 = (h1 ^ c) >>> 0; h1 = Math.imul(h1, 16777619) >>> 0;
+      h2 = (h2 + Math.imul(c ^ h1, 2654435761)) >>> 0;
+      h2 = ((h2 << 7) | (h2 >>> 25)) >>> 0;
+    }
+  }
+  return h1.toString(36) + '-' + h2.toString(36) + '-' + ((h1 ^ h2) >>> 0).toString(36);
+}
+function validUserName(u){ return /^[\w\u4e00-\u9fa5]{2,16}$/.test(u); }
+function registerUser(u, p){
+  loadAccounts();
+  if (!validUserName(u)) return { ok:false, msg:'账号需 2-16 位字母 / 数字 / 汉字' };
+  if (accounts.users[u]) return { ok:false, msg:'该账号已存在，请直接登录' };
+  if (!p || p.length < 4) return { ok:false, msg:'密码至少 4 位' };
+  if (p.length > 24) return { ok:false, msg:'密码最多 24 位' };
+  accounts.users[u] = { hash: hashPass(u, p), created: Date.now(), last: Date.now() };
+  accounts.last = u;
+  if (!persistAccounts()){ delete accounts.users[u]; return { ok:false, msg:'本地存储不可用，注册失败' }; }
+  return { ok:true, msg:'注册成功，正在登录…' };
+}
+function loginUser(u, p){
+  loadAccounts();
+  const rec = accounts.users[u];
+  if (!rec) return { ok:false, msg:'账号不存在，请先注册' };
+  if (rec.hash !== hashPass(u, p)) return { ok:false, msg:'密码错误' };
+  rec.last = Date.now();
+  accounts.last = u;
+  persistAccounts();
+  return { ok:true };
+}
+function accountSaveKey(user){ return SAVE_PREFIX + encodeURIComponent(user || '') + '_v3'; }
+function saveKey(){ return accountSaveKey(curUser); }
+
+/* ---------------- 存档 ---------------- */
 function saveGame(silent){
-  if (!G.player) return;
+  if (!G.player || !curUser) return;
   const p = G.player;
   const pack = invLen => ({
-    v: 3, cls: p.cls, name: p.name, lv: p.lv, exp: p.exp, gold: p.gold,
+    v: 3, cls: p.cls, name: p.name, lv: p.lv, exp: p.lv >= LV_CAP ? 0 : p.exp, gold: p.gold,
     hp: p.hp, mp: p.mp,
     inv: invLen === undefined ? p.inv : p.inv.slice(0, invLen),
     equip: p.equip,
     map: G.map.id,
     x: p.x / TS, y: p.y / TS,
+    boss: G.bossKills,
+    pet: { type:G.pet.type, lv:G.pet.lv, on:G.pet.on },
+    quick: G.quick,
     t: Date.now()
   });
   try {
-    localStorage.setItem(SAVE_KEY, JSON.stringify(pack()));
+    localStorage.setItem(saveKey(), JSON.stringify(pack()));
     if (!silent) log('游戏已保存', '#8fd08a');
   } catch(e){
     // 背包过大撑爆本地存储：逐级裁剪，至少保住人物进度
@@ -4340,7 +6101,7 @@ function saveGame(silent){
     for (const n of [20000, 8000, 2000]){
       if (p.inv.length <= n) continue;
       try {
-        localStorage.setItem(SAVE_KEY, JSON.stringify(pack(n)));
+        localStorage.setItem(saveKey(), JSON.stringify(pack(n)));
         ok = true;
         log('存档空间不足，本次仅保存背包前 ' + n + ' 件（其余物品请先回收/出售）', '#ffb07a');
         break;
@@ -4349,34 +6110,216 @@ function saveGame(silent){
     if (!ok && !silent) log('保存失败：' + e.message, '#ff9b7a');
   }
 }
-function loadSave(){
+function loadSave(user){
+  const u = user || curUser;
+  if (!u) return null;
   try {
-    const raw = localStorage.getItem(SAVE_KEY);
+    const raw = localStorage.getItem(accountSaveKey(u));
     if (!raw) return null;
-    return JSON.parse(raw);
+    const d = JSON.parse(raw);
+    return (d && d.cls) ? d : null;
   } catch(e){ return null; }
+}
+function loadLegacySave(){
+  try {
+    const raw = localStorage.getItem(LEGACY_SAVE_KEY);
+    if (!raw) return null;
+    const d = JSON.parse(raw);
+    return (d && d.cls) ? d : null;
+  } catch(e){ return null; }
+}
+function clearLegacySave(){
+  try { localStorage.removeItem(LEGACY_SAVE_KEY); } catch(e){}
 }
 function applySave(d){
   const p = newPlayer(d.cls);
   p.name = d.name || '无名勇士';
-  p.lv = clamp(d.lv || 1, 1, LV_CAP); p.exp = d.exp || 0; p.gold = d.gold || 0;
+  p.lv = clamp(d.lv || 1, 1, LV_CAP);
+  p.exp = p.lv >= LV_CAP ? 0 : clamp(d.exp || 0, 0, Math.max(0, nextExp(p.lv) - 1));
+  p.gold = d.gold || 0;
   p.inv = d.inv || [];
   const eq = { weapon:null, armor:null, helm:null, neck:null, ring:null, belt:null, boots:null };
   if (d.equip) for (const sl of SLOT_LIST) if (d.equip[sl] && d.equip[sl].name) eq[sl] = d.equip[sl];
   p.equip = eq;
   // 清理非法引用
   p.inv = p.inv.filter(x => x && x.name);
+  // 归一化堆叠数量，兼容没有 count 的旧存档
+  for (const it of p.inv){
+    const c = it.count | 0;
+    if (c > 1) it.count = Math.min(c, stackMax(it));
+    else delete it.count;
+  }
   G.player = p;
+  G.bossKills = (d.boss && typeof d.boss === 'object') ? d.boss : {};
+  // 宠物
+  resetPet();
+  if (d.pet && PETS[d.pet.type]){
+    G.pet.type = d.pet.type;
+    G.pet.lv = clamp(d.pet.lv | 0 || 1, 1, PET_MAX_LV);
+    G.pet.on = d.pet.on !== false;
+  }
+  // 快捷药水格
+  resetQuick();
+  if (Array.isArray(d.quick)){
+    for (let i = 0; i < 3; i++){
+      const v = d.quick[i];
+      if (v === null || v === undefined) G.quick[i] = null;
+      else if (typeof v === 'string' && (QUICK_SENT[v] || POTIONS[v])) G.quick[i] = v;
+    }
+  }
   enterMap(d.map || 'village', d.x || 31, d.y || 31, true);
   p.hp = Math.min(d.hp, maxHp(p)) || maxHp(p);
   p.mp = Math.min(d.mp, maxMp(p)) || maxMp(p);
   buildSkillBar();
+  updatePetUI();
 }
 
 /* ---------------------------------------------------------
    19. 启动流程
    --------------------------------------------------------- */
 let selectedCls = null;
+let delArmT = 0;
+
+function escHtml(s){
+  return String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' })[c]);
+}
+function fmtTime(ts){
+  if (!ts) return '未知';
+  const d = new Date(ts), n = new Date();
+  const hm = String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0');
+  if (d.toDateString() === n.toDateString()) return '今天 ' + hm;
+  return (d.getMonth() + 1) + '月' + d.getDate() + '日 ' + hm;
+}
+
+/* ---------------- 登录界面 ---------------- */
+let authMode = 'login';
+function setAuthMode(mode){
+  authMode = mode;
+  document.querySelectorAll('.atab').forEach(t => t.classList.toggle('on', t.dataset.mode === mode));
+  $('auPass2Wrap').classList.toggle('hide', mode !== 'reg');
+  $('auBtn').textContent = mode === 'reg' ? '注 册 并 登 录' : '登 录';
+  $('auPass').value = '';
+  $('auPass2').value = '';
+  authMsg('');
+}
+function authMsg(msg, ok){
+  const el = $('auMsg');
+  el.textContent = msg || '';
+  el.classList.toggle('ok', !!ok);
+}
+function showAuth(){
+  $('charBox').classList.add('hide');
+  $('authBox').classList.remove('hide');
+  setAuthMode('login');
+  $('auRemember').checked = false;
+  renderAuthAccounts();
+  if (accounts && accounts.last) $('auName').value = accounts.last;
+  $('start').scrollTop = 0;
+}
+function renderAuthAccounts(){
+  const el = $('accList');
+  const names = accounts ? Object.keys(accounts.users || {}) : [];
+  if (!names.length){ el.classList.add('hide'); el.innerHTML = ''; return; }
+  el.classList.remove('hide');
+  const shown = names.slice(0, 8);
+  el.innerHTML = '本机已有账号：' + shown.map(n =>
+    '<b data-u="' + escHtml(n) + '">' + escHtml(n) + '</b>').join('') +
+    (names.length > shown.length ? ' 等 ' + names.length + ' 个' : '');
+}
+$('accList').onclick = e => {
+  const u = e.target && e.target.dataset ? e.target.dataset.u : '';
+  if (!u) return;
+  setAuthMode('login');
+  $('auName').value = u;
+  $('auPass').value = '';
+  $('auPass').focus();
+  authMsg('已填入账号，请输入密码');
+};
+document.querySelectorAll('.atab').forEach(t => {
+  t.onclick = () => setAuthMode(t.dataset.mode);
+});
+
+function doAuth(){
+  const u = $('auName').value.trim();
+  const p = $('auPass').value;
+  const btn = $('auBtn');
+  if (btn.disabled) return;
+  if (!u){ authMsg('请输入账号'); $('auName').focus(); return; }
+  if (authMode === 'reg'){
+    if (p !== $('auPass2').value){ authMsg('两次输入的密码不一致'); return; }
+    const r = registerUser(u, p);
+    if (!r.ok){ authMsg(r.msg); return; }
+    accounts.remember = $('auRemember').checked;
+    persistAccounts();
+    authMsg(r.msg, true);
+    curUser = u;
+    setTimeout(() => enterCharBox(), 240);
+  } else {
+    const r = loginUser(u, p);
+    if (!r.ok){ authMsg(r.msg); return; }
+    accounts.remember = $('auRemember').checked;
+    persistAccounts();
+    curUser = u;
+    authMsg('登录成功，正在读取存档…', true);
+    setTimeout(() => enterCharBox(), 180);
+  }
+}
+$('auBtn').onclick = doAuth;
+$('auName').addEventListener('keydown', e => {
+  if (e.key === 'Enter'){ e.preventDefault(); $('auPass').focus(); }
+});
+$('auPass').addEventListener('keydown', e => {
+  if (e.key !== 'Enter') return;
+  e.preventDefault();
+  if (authMode === 'reg') $('auPass2').focus();
+  else doAuth();
+});
+$('auPass2').addEventListener('keydown', e => {
+  if (e.key === 'Enter'){ e.preventDefault(); doAuth(); }
+});
+
+/* ---------------- 角色面板 ---------------- */
+function enterCharBox(){
+  $('authBox').classList.add('hide');
+  $('charBox').classList.remove('hide');
+  renderCharBox();
+}
+function renderCharBox(){
+  loadAccounts();
+  delArmT = 0;
+  $('ubDel').textContent = '删除角色';
+  $('ubDel').style.color = '';
+  $('ubName').innerHTML = '账号 <b>' + escHtml(curUser || '') + '</b>';
+  const sv = loadSave();
+  const hasRole = !!sv;
+  $('ubDel').classList.toggle('hide', !hasRole);
+  $('roleInfo').classList.toggle('hide', !hasRole);
+  $('clsCards').classList.toggle('hide', hasRole);
+  $('nameRow').classList.toggle('hide', hasRole);
+  $('legacyBtn').classList.add('hide');
+
+  const b = $('startBtn');
+  b.classList.remove('hide');
+  if (hasRole){
+    const C = CLASSES[sv.cls] || CLASSES.warrior;
+    $('riIco').textContent = C.glyph;
+    $('riName').textContent = (sv.name || '无名勇士') + '　Lv.' + (sv.lv || 1) + ' ' + C.name;
+    $('riLine1').innerHTML = '金币 <em>' + (sv.gold || 0) + '</em>　·　背包 <em>' +
+      ((sv.inv || []).length) + '</em> 件';
+    $('riLine2').textContent = '存档位置：' + (MAP_BUILDERS[sv.map] ? getMap(sv.map).name : '比奇城') +
+      '　·　上次在线 ' + fmtTime(sv.t);
+    b.disabled = false;
+    b.textContent = '进 入 游 戏';
+  } else {
+    selectedCls = null;
+    document.querySelectorAll('.card').forEach(x => x.classList.remove('sel'));
+    $('roleName').value = '';
+    b.disabled = true;
+    b.textContent = '选 择 职 业';
+    if (loadLegacySave()) $('legacyBtn').classList.remove('hide');
+  }
+}
+
 document.querySelectorAll('.card').forEach(c => {
   c.onclick = () => {
     document.querySelectorAll('.card').forEach(x => x.classList.remove('sel'));
@@ -4384,35 +6327,83 @@ document.querySelectorAll('.card').forEach(c => {
     selectedCls = c.dataset.cls;
     const btn = $('startBtn');
     btn.disabled = false;
-    btn.textContent = '开 始 游 戏';
+    btn.textContent = '创 建 角 色';
     initAudio();
   };
 });
+
 $('startBtn').onclick = () => {
+  const sv = loadSave();
+  if (sv){ startGame(null, sv); return; }
   if (!selectedCls) return;
   startGame(selectedCls);
 };
-const sv = loadSave();
-if (sv){
-  $('contBtn').classList.remove('hide');
-  $('contBtn').onclick = () => { startGame(null, sv); };
-}
 
+$('ubOps').onclick = e => {
+  const t = e.target;
+  if (!t || !t.id) return;
+  if (t.id === 'ubSwitch'){ logoutToAuth(); return; }
+  if (t.id === 'ubDel'){ onDeleteRole(); return; }
+};
+function onDeleteRole(){
+  const now = Date.now();
+  const el = $('ubDel');
+  if (now - delArmT > 4000){
+    delArmT = now;
+    el.textContent = '确认删除？再点一次';
+    el.style.color = '#ff6a4a';
+    const stamp = delArmT;
+    setTimeout(() => {
+      if (delArmT !== stamp) return;
+      delArmT = 0;
+      el.textContent = '删除角色';
+      el.style.color = '';
+    }, 4200);
+    return;
+  }
+  delArmT = 0;
+  try { localStorage.removeItem(accountSaveKey(curUser)); } catch(e){}
+  el.textContent = '删除角色';
+  el.style.color = '';
+  tip('角色已删除，可以重新创建');
+  renderCharBox();
+}
+$('legacyBtn').onclick = () => {
+  const lg = loadLegacySave();
+  if (!lg){ $('legacyBtn').classList.add('hide'); return; }
+  try {
+    localStorage.setItem(accountSaveKey(curUser), JSON.stringify(lg));
+    clearLegacySave();
+    renderCharBox();
+    tip('旧存档已导入到当前账号');
+  } catch(e){ tip('导入失败：' + e.message); }
+};
+
+/* ---------------- 进入 / 退出游戏 ---------------- */
 function startGame(cls, save){
   initAudio();
   $('start').classList.add('hide');
+  $('accPanel').classList.add('hide');
   if (save){
     applySave(save);
     log('欢迎回来，' + G.player.name, '#f0d78c');
+    log('账号「' + curUser + '」进度已载入。', '#94c8ff');
   } else {
+    const nm = String($('roleName').value || '').trim().slice(0, 10);
     G.player = newPlayer(cls);
-    G.player.name = P().name + '勇士';
+    G.player.name = nm || (P().name + '勇士');
+    G.bossKills = {};
+    resetPet();
+    resetQuick();
     enterMap('village', 31, 33, true);
     buildSkillBar();
     log('你来到了比奇城。点击地面移动，点击怪物攻击。', '#f0d78c');
     log('提示：去城门口（下方）进入沃玛森林练级；按 T 可传送到各大练级区与 BOSS 房。', '#94c8ff');
+    log('宠物商人（城内左上）出售自动拾取宠物，买下后会一直跟着你捡东西。', '#ffd97a');
+    log('主线：祖玛教主 → 沃玛教主 → 蜈蚣王 → 触龙神 → 赤月恶魔 → 牛魔王 → 猪王 → 封魔谷主 → 魔龙教主 → 幻境魔王', '#c8a8ff');
   }
   G.running = true;
+  G.paused = false;
   G.lastSave = G.time;
   G.auto.on = false;
   G.invPage = 0;
@@ -4420,7 +6411,64 @@ function startGame(cls, save){
   updateAutoUI();
   syncHUD();
   drawMinimapStatic();
-  tip('WASD 移动 · 左键打怪 · 1-4 技能 · E 终极 · 5/6 喝药');
+  tip('WASD 移动 · 左键打怪 · 1-4 技能 · E 终极 · 5/6/7 快捷药水 · P 宠物');
+  saveGame(true);
+}
+
+function logoutToAuth(){
+  if (G.running) saveGame(true);
+  G.running = false;
+  G.paused = false;
+  if (G.auto) G.auto.on = false;
+  updateAutoUI();
+  resetPet();
+  updatePetUI();
+  ['invPanel', 'shopPanel', 'charPanel', 'accPanel'].forEach(id => $(id).classList.add('hide'));
+  closeRecycle();
+  $('dead').classList.add('hide');
+  loadAccounts();
+  accounts.remember = false;   // 主动切换账号时不再自动登录
+  persistAccounts();
+  const last = accounts.last;
+  curUser = null;
+  $('start').classList.remove('hide');
+  showAuth();
+  if (last) $('auName').value = last;
+}
+
+/* ---------------- 游戏内账号面板 ---------------- */
+function openAccPanel(){
+  if (!curUser || !G.player) return;
+  ['invPanel', 'shopPanel', 'charPanel'].forEach(id => $(id).classList.add('hide'));
+  closeRecycle();
+  $('apUser').textContent = curUser;
+  $('apRole').textContent = G.player.name + ' · ' + P().name;
+  $('apLv').textContent = 'Lv.' + G.player.lv + '　金币 ' + G.player.gold;
+  $('apMap').textContent = G.map.name;
+  $('accPanel').classList.remove('hide');
+}
+$('bAcc').onclick = () => {
+  if ($('accPanel').classList.contains('hide')) openAccPanel();
+  else $('accPanel').classList.add('hide');
+};
+$('apSave').onclick = () => { saveGame(false); syncHUD(); };
+$('apClose').onclick = () => $('accPanel').classList.add('hide');
+$('apLogout').onclick = () => {
+  $('accPanel').classList.add('hide');
+  logoutToAuth();
+  tip('已退出登录，进度已保存');
+};
+
+/* ---------------- 启动 ---------------- */
+loadAccounts();
+if (accounts.last) $('auName').value = accounts.last;
+if (accounts.remember && accounts.last && accounts.users[accounts.last]){
+  curUser = accounts.last;
+  $('authBox').classList.add('hide');
+  $('charBox').classList.remove('hide');
+  renderCharBox();
+} else {
+  showAuth();
 }
 
 /* 主循环 */
